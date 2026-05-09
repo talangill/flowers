@@ -10,367 +10,89 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --cream: #faf6f0;
-      --warm-white: #fdf9f4;
-      --parchment: #f0e8d8;
-      --ink: #2a1f14;
-      --ink-light: #5c4a38;
-      --ink-muted: #8c7a68;
-      --ink-faint: #b8a898;
-      --blush: #d4896a;
-      --blush-light: #f0c4b0;
-      --border: rgba(42,31,20,0.12);
-      --border-light: rgba(42,31,20,0.07);
+      --cream: #faf6f0; --warm-white: #fdf9f4; --parchment: #f0e8d8;
+      --ink: #2a1f14; --ink-light: #5c4a38; --ink-muted: #8c7a68; --ink-faint: #b8a898;
+      --blush: #d4896a; --blush-light: #f0c4b0;
+      --border: rgba(42,31,20,0.12); --border-light: rgba(42,31,20,0.07);
     }
-
     @media (prefers-color-scheme: dark) {
       :root {
-        --cream: #1a1410;
-        --warm-white: #211a13;
-        --parchment: #2a2018;
-        --ink: #e8ddd0;
-        --ink-light: #c4b09a;
-        --ink-muted: #9a8a78;
-        --ink-faint: #6a5a4a;
-        --blush: #d4896a;
-        --blush-light: #6a3a28;
-        --border: rgba(232,221,208,0.12);
-        --border-light: rgba(232,221,208,0.07);
+        --cream: #1a1410; --warm-white: #211a13; --parchment: #2a2018;
+        --ink: #e8ddd0; --ink-light: #c4b09a; --ink-muted: #9a8a78; --ink-faint: #6a5a4a;
+        --blush: #d4896a; --blush-light: #6a3a28;
+        --border: rgba(232,221,208,0.12); --border-light: rgba(232,221,208,0.07);
       }
     }
-
     html { scroll-behavior: smooth; }
-
-    body {
-      background-color: var(--cream);
-      color: var(--ink);
-      font-family: 'Lato', sans-serif;
-      font-weight: 300;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
+    body { background-color: var(--cream); color: var(--ink); font-family: 'Lato', sans-serif; font-weight: 300; min-height: 100vh; overflow-x: hidden; }
     body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0.6;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.6;
     }
-
     .page { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; padding: 0 2rem 5rem; }
-
+    /* Hero */
     .hero { text-align: center; padding: 5rem 0 3rem; }
-    .hero::before {
-      content: '❧';
-      display: block;
-      font-size: 1.6rem;
-      color: var(--blush);
-      margin-bottom: 1.5rem;
-      opacity: 0.7;
-      animation: fadeIn 1s ease both;
-    }
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.4rem, 6vw, 3.6rem);
-      font-weight: 400;
-      font-style: italic;
-      line-height: 1.15;
-      color: var(--ink);
-      letter-spacing: -0.01em;
-      animation: fadeUp 0.9s ease both 0.1s;
-    }
-    .hero-sub {
-      margin-top: 0.5rem;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1rem;
-      font-style: italic;
-      color: var(--ink-muted);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      animation: fadeUp 0.9s ease both 0.2s;
-    }
-    .ornament {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin: 1.8rem auto;
-      max-width: 280px;
-      animation: fadeIn 1s ease both 0.3s;
-    }
-    .ornament-line {
-      flex: 1;
-      height: 0.5px;
-      background: linear-gradient(to right, transparent, var(--ink-faint), transparent);
-    }
+    .hero::before { content: '❧'; display: block; font-size: 1.6rem; color: var(--blush); margin-bottom: 1.5rem; opacity: 0.7; animation: fadeIn 1s ease both; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem,6vw,3.6rem); font-weight: 400; font-style: italic; line-height: 1.15; color: var(--ink); letter-spacing: -0.01em; animation: fadeUp 0.9s ease both 0.1s; }
+    .hero-sub { margin-top: 0.5rem; font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-style: italic; color: var(--ink-muted); letter-spacing: 0.18em; text-transform: uppercase; animation: fadeUp 0.9s ease both 0.2s; }
+    .ornament { display: flex; align-items: center; gap: 1rem; margin: 1.8rem auto; max-width: 280px; animation: fadeIn 1s ease both 0.3s; }
+    .ornament-line { flex: 1; height: 0.5px; background: linear-gradient(to right, transparent, var(--ink-faint), transparent); }
     .ornament-glyph { font-size: 0.9rem; color: var(--ink-faint); }
-    .hero p {
-      font-size: 1rem;
-      color: var(--ink-light);
-      line-height: 1.8;
-      max-width: 480px;
-      margin: 0 auto;
-      font-weight: 300;
-      animation: fadeUp 0.9s ease both 0.35s;
-    }
-
-    .input-card {
-      background: var(--warm-white);
-      border: 0.5px solid var(--border);
-      border-radius: 16px;
-      padding: 2rem;
-      margin-bottom: 2.5rem;
-      animation: fadeUp 0.9s ease both 0.45s;
-    }
-    .input-label {
-      display: block;
-      font-size: 11px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--ink-muted);
-      margin-bottom: 0.7rem;
-      font-weight: 400;
-    }
-    textarea {
-      width: 100%;
-      background: var(--cream);
-      border: 0.5px solid var(--border);
-      border-radius: 10px;
-      padding: 1rem 1.2rem;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
-      font-style: italic;
-      font-weight: 300;
-      color: var(--ink);
-      resize: none;
-      height: 100px;
-      line-height: 1.7;
-      outline: none;
-      transition: border-color 0.2s;
-    }
+    .hero p { font-size: 1rem; color: var(--ink-light); line-height: 1.8; max-width: 480px; margin: 0 auto; font-weight: 300; animation: fadeUp 0.9s ease both 0.35s; }
+    /* Input */
+    .input-card { background: var(--warm-white); border: 0.5px solid var(--border); border-radius: 16px; padding: 2rem; margin-bottom: 2.5rem; animation: fadeUp 0.9s ease both 0.45s; }
+    .input-label { display: block; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 0.7rem; font-weight: 400; }
+    textarea { width: 100%; background: var(--cream); border: 0.5px solid var(--border); border-radius: 10px; padding: 1rem 1.2rem; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; font-weight: 300; color: var(--ink); resize: none; height: 100px; line-height: 1.7; outline: none; transition: border-color 0.2s; }
     textarea:focus { border-color: var(--blush); }
     textarea::placeholder { color: var(--ink-faint); }
-
-    .suggestions-label {
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--ink-faint);
-      margin: 1.2rem 0 0.6rem;
-      display: block;
-    }
+    .suggestions-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin: 1.2rem 0 0.6rem; display: block; }
     .suggestions { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1.4rem; }
-    .suggestion-btn {
-      font-size: 12px;
-      padding: 5px 14px;
-      border-radius: 99px;
-      border: 0.5px solid var(--border);
-      background: transparent;
-      color: var(--ink-light);
-      cursor: pointer;
-      font-family: 'Lato', sans-serif;
-      font-weight: 300;
-      transition: all 0.18s;
-      letter-spacing: 0.02em;
-    }
+    .suggestion-btn { font-size: 12px; padding: 5px 14px; border-radius: 99px; border: 0.5px solid var(--border); background: transparent; color: var(--ink-light); cursor: pointer; font-family: 'Lato', sans-serif; font-weight: 300; transition: all 0.18s; letter-spacing: 0.02em; }
     .suggestion-btn:hover { background: var(--parchment); border-color: var(--ink-faint); color: var(--ink); }
-
-    .compose-btn {
-      width: 100%;
-      padding: 0.85rem;
-      background: var(--ink);
-      color: var(--cream);
-      border: none;
-      border-radius: 10px;
-      font-family: 'Lato', sans-serif;
-      font-size: 12px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: opacity 0.2s, transform 0.15s;
-      font-weight: 400;
-    }
+    .compose-btn { width: 100%; padding: 0.85rem; background: var(--ink); color: var(--cream); border: none; border-radius: 10px; font-family: 'Lato', sans-serif; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; cursor: pointer; transition: opacity 0.2s, transform 0.15s; font-weight: 400; }
     .compose-btn:hover { opacity: 0.88; }
     .compose-btn:active { transform: scale(0.99); }
-
+    /* Results */
     #results { margin-bottom: 3rem; }
-
-    .results-heading {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.8rem;
-      font-style: italic;
-      letter-spacing: 0.14em;
-      color: var(--ink-faint);
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-
-    .arrangement {
-      background: var(--warm-white);
-      border: 0.5px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-      margin-bottom: 1.2rem;
-      animation: fadeUp 0.5s ease both;
-    }
+    .results-heading { font-family: 'Cormorant Garamond', serif; font-size: 0.8rem; font-style: italic; letter-spacing: 0.14em; color: var(--ink-faint); text-transform: uppercase; margin-bottom: 1rem; }
+    .arrangement { background: var(--warm-white); border: 0.5px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 1.2rem; animation: fadeUp 0.5s ease both; }
     .arrangement:nth-child(2) { animation-delay: 0.1s; }
     .arrangement:nth-child(3) { animation-delay: 0.2s; }
-
-    .arr-header {
-      padding: 1.3rem 1.6rem;
-      border-bottom: 0.5px solid var(--border-light);
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-    .arr-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.35rem;
-      font-style: italic;
-      font-weight: 400;
-      line-height: 1.2;
-      color: var(--ink);
-    }
-    .arr-tagline {
-      font-size: 11px;
-      color: var(--ink-muted);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-top: 3px;
-    }
-    .best-badge {
-      flex-shrink: 0;
-      font-size: 10px;
-      padding: 3px 10px;
-      border-radius: 99px;
-      background: var(--parchment);
-      color: var(--blush);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      border: 0.5px solid var(--blush-light);
-      margin-top: 4px;
-    }
+    .arr-header { padding: 1.3rem 1.6rem; border-bottom: 0.5px solid var(--border-light); display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+    .arr-name { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-style: italic; font-weight: 400; line-height: 1.2; color: var(--ink); }
+    .arr-tagline { font-size: 11px; color: var(--ink-muted); letter-spacing: 0.12em; text-transform: uppercase; margin-top: 3px; }
+    .best-badge { flex-shrink: 0; font-size: 10px; padding: 3px 10px; border-radius: 99px; background: var(--parchment); color: var(--blush); letter-spacing: 0.1em; text-transform: uppercase; border: 0.5px solid var(--blush-light); margin-top: 4px; }
     .arr-body { padding: 1.3rem 1.6rem; }
-    .section-micro {
-      font-size: 10px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--ink-faint);
-      margin-bottom: 0.7rem;
-    }
-    .flowers-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 8px;
-      margin-bottom: 1.2rem;
-    }
-    .flower-pill {
-      background: var(--cream);
-      border: 0.5px solid var(--border-light);
-      border-radius: 10px;
-      padding: 0.65rem 0.9rem;
-    }
+    .section-micro { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 0.7rem; }
+    .flowers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; margin-bottom: 1.2rem; }
+    .flower-pill { background: var(--cream); border: 0.5px solid var(--border-light); border-radius: 10px; padding: 0.65rem 0.9rem; }
     .flower-pill-name { font-size: 13px; font-weight: 400; color: var(--ink); margin-bottom: 2px; }
-    .flower-pill-meaning {
-      font-size: 11.5px;
-      color: var(--ink-muted);
-      font-style: italic;
-      font-family: 'Cormorant Garamond', serif;
-      line-height: 1.4;
-    }
-    .arr-note {
-      font-size: 13.5px;
-      color: var(--ink-light);
-      line-height: 1.75;
-      font-weight: 300;
-      border-top: 0.5px solid var(--border-light);
-      padding-top: 1rem;
-    }
+    .flower-pill-meaning { font-size: 11.5px; color: var(--ink-muted); font-style: italic; font-family: 'Cormorant Garamond', serif; line-height: 1.4; }
+    .arr-note { font-size: 13.5px; color: var(--ink-light); line-height: 1.75; font-weight: 300; border-top: 0.5px solid var(--border-light); padding-top: 1rem; }
     .error-msg { text-align: center; padding: 2rem; color: #a0533a; font-size: 14px; }
-
-    .glossary {
-      border-top: 0.5px solid var(--border);
-      padding-top: 2.5rem;
-      animation: fadeUp 0.9s ease both 0.6s;
-    }
+    /* Glossary */
+    .glossary { border-top: 0.5px solid var(--border); padding-top: 2.5rem; animation: fadeUp 0.9s ease both 0.6s; }
     .glossary-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.4rem; }
-    .glossary-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
-      font-style: italic;
-      font-weight: 400;
-      color: var(--ink);
-    }
+    .glossary-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-style: italic; font-weight: 400; color: var(--ink); }
     .glossary-sub { font-size: 11px; color: var(--ink-faint); letter-spacing: 0.12em; text-transform: uppercase; }
     .gf-row { display: flex; gap: 6px; margin-bottom: 0.9rem; flex-wrap: wrap; }
-    .gf-btn {
-      font-size: 11px;
-      padding: 4px 12px;
-      border-radius: 99px;
-      border: 0.5px solid var(--border);
-      background: transparent;
-      color: var(--ink-muted);
-      cursor: pointer;
-      font-family: 'Lato', sans-serif;
-      font-weight: 300;
-      transition: all 0.15s;
-      letter-spacing: 0.04em;
-    }
+    .gf-btn { font-size: 11px; padding: 4px 12px; border-radius: 99px; border: 0.5px solid var(--border); background: transparent; color: var(--ink-muted); cursor: pointer; font-family: 'Lato', sans-serif; font-weight: 300; transition: all 0.15s; letter-spacing: 0.04em; }
     .gf-btn.active, .gf-btn:hover { background: var(--parchment); border-color: var(--ink-faint); color: var(--ink); }
-    .glossary-search {
-      width: 100%;
-      background: var(--warm-white);
-      border: 0.5px solid var(--border);
-      border-radius: 8px;
-      padding: 0.6rem 1rem;
-      font-family: 'Lato', sans-serif;
-      font-size: 13px;
-      color: var(--ink);
-      font-weight: 300;
-      outline: none;
-      margin-bottom: 1rem;
-      transition: border-color 0.2s;
-    }
+    .glossary-search { width: 100%; background: var(--warm-white); border: 0.5px solid var(--border); border-radius: 8px; padding: 0.6rem 1rem; font-family: 'Lato', sans-serif; font-size: 13px; color: var(--ink); font-weight: 300; outline: none; margin-bottom: 1rem; transition: border-color 0.2s; }
     .glossary-search:focus { border-color: var(--blush); }
     .glossary-search::placeholder { color: var(--ink-faint); }
     .glossary-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); gap: 6px; }
-    .g-item {
-      padding: 0.55rem 0.8rem;
-      border: 0.5px solid var(--border-light);
-      border-radius: 8px;
-      background: var(--warm-white);
-      transition: border-color 0.15s;
-    }
+    .g-item { padding: 0.55rem 0.8rem; border: 0.5px solid var(--border-light); border-radius: 8px; background: var(--warm-white); transition: border-color 0.15s; }
     .g-item:hover { border-color: var(--ink-faint); }
     .g-name-row { display: flex; align-items: center; justify-content: space-between; gap: 4px; }
     .g-name { font-size: 13px; font-weight: 400; color: var(--ink); }
     .g-src { font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); flex-shrink: 0; }
     .g-meaning { font-size: 11.5px; color: var(--ink-muted); font-style: italic; font-family: 'Cormorant Garamond', serif; }
-
-    footer {
-      text-align: center;
-      padding: 3rem 0 1rem;
-      font-size: 11px;
-      color: var(--ink-faint);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
+    footer { text-align: center; padding: 3rem 0 1rem; font-size: 11px; color: var(--ink-faint); letter-spacing: 0.1em; text-transform: uppercase; }
     footer span { color: var(--blush); }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
-
+    @keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
     @media (max-width: 520px) {
       .page { padding: 0 1.2rem 4rem; }
       .hero { padding: 3rem 0 2rem; }
@@ -380,24 +102,18 @@
   </style>
 </head>
 <body>
-
 <div class="page">
 
   <header class="hero">
     <h1>The Language of Flowers</h1>
     <p class="hero-sub">Floriography &middot; A Victorian Art</p>
-    <div class="ornament">
-      <div class="ornament-line"></div>
-      <div class="ornament-glyph">✦</div>
-      <div class="ornament-line"></div>
-    </div>
+    <div class="ornament"><div class="ornament-line"></div><div class="ornament-glyph">✦</div><div class="ornament-line"></div></div>
     <p>Describe what you wish to say — a feeling, an occasion, a sentiment — and receive a curated arrangement that speaks without words.</p>
   </header>
 
   <div class="input-card">
     <label class="input-label" for="msg">Your message or sentiment</label>
     <textarea id="msg" placeholder="e.g. I want to tell someone I'm sorry and still deeply in love with them…" rows="4"></textarea>
-
     <span class="suggestions-label">Quick sentiments</span>
     <div class="suggestions">
       <button class="suggestion-btn" onclick="fill('I want to express deep gratitude to a close friend')">Gratitude to a friend</button>
@@ -406,8 +122,11 @@
       <button class="suggestion-btn" onclick="fill('I want to apologise sincerely and ask for forgiveness')">Sincere apology</button>
       <button class="suggestion-btn" onclick="fill('Congratulations on a new beginning or fresh start')">New beginning</button>
       <button class="suggestion-btn" onclick="fill('I miss someone dearly and wish they were here')">I miss you</button>
+      <button class="suggestion-btn" onclick="fill('I want to offer comfort to someone who is ill or struggling')">Comfort &amp; healing</button>
+      <button class="suggestion-btn" onclick="fill('I admire someone greatly and want to express my admiration secretly')">Secret admirer</button>
+      <button class="suggestion-btn" onclick="fill('I am saying farewell to someone I love dearly')">Farewell</button>
+      <button class="suggestion-btn" onclick="fill('I want to celebrate a wedding or marriage')">Wedding &amp; marriage</button>
     </div>
-
     <button class="compose-btn" id="compose-btn" onclick="compose()">Compose My Arrangement</button>
   </div>
 
@@ -416,7 +135,7 @@
   <section class="glossary">
     <div class="glossary-header">
       <h2 class="glossary-title">A Floral Dictionary</h2>
-      <span class="glossary-sub" id="glossary-count">110 flowers</span>
+      <span class="glossary-sub" id="glossary-count"></span>
     </div>
     <div class="gf-row">
       <button class="gf-btn active" onclick="setFilter('all',this)">All</button>
@@ -427,292 +146,482 @@
     <div class="glossary-grid" id="glossary"></div>
   </section>
 
-  <footer>
-    <p>Made with <span>❧</span> · The Victorian Language of Flowers · Floriography since 1820</p>
-  </footer>
-
+  <footer><p>Made with <span>❧</span> · The Victorian Language of Flowers · Floriography since 1820</p></footer>
 </div>
 
 <script>
-// ─────────────────────────────────────────────
-//  FLOWER DATABASE
-//  Each flower has: name, source, meanings[],
-//  tags[] (sentiment categories for matching),
-// ─────────────────────────────────────────────
+// =============================================================================
+//  FLOWER DATABASE — 210 entries
+//  source: V = Victorian floriography  F = Folklore / mythology  B = Both
+// =============================================================================
 const FLOWERS = [
-  {name:'Red Rose',          source:'V', meanings:['passionate love','desire','romance','I love you'],                          tags:['love','passion','romance','desire','longing','heart']},
-  {name:'White Rose',        source:'V', meanings:['purity','innocence','sympathy','new beginnings','reverence'],               tags:['sympathy','grief','purity','new','beginning','comfort','innocent','condolence']},
-  {name:'Pink Rose',         source:'V', meanings:['admiration','gratitude','gentle affection','appreciation'],                 tags:['gratitude','thanks','admiration','appreciate','friendship','gentle','affection']},
-  {name:'Yellow Rose',       source:'V', meanings:['friendship','joy','warmth','platonic love'],                                tags:['friendship','friend','joy','happy','warm','cheer','platonic']},
-  {name:'Orange Rose',       source:'V', meanings:['enthusiasm','desire','fascination','passionate romance'],                   tags:['passion','desire','energy','enthusiasm','romance','love']},
-  {name:'Coral Rose',        source:'V', meanings:['desire','modesty','friendship blossoming into love'],                      tags:['friendship','love','desire','blossoming','beginning','romantic']},
-  {name:'Lavender Rose',     source:'V', meanings:['enchantment','love at first sight','mystery','wonder'],                    tags:['love','wonder','mystery','enchant','first','sight','admire']},
-  {name:'Dark Crimson Rose', source:'V', meanings:['mourning','deep grief','unconscious beauty'],                              tags:['grief','mourning','loss','death','sorrow','dark']},
-  {name:'Moss Rose',         source:'V', meanings:['confessions of love','voluptuous love','pleasure'],                       tags:['love','confess','pleasure','romantic','desire']},
-  {name:'Bridal Rose',       source:'V', meanings:['happy love','unity','celebration of marriage'],                           tags:['wedding','marriage','celebrate','unity','happy','love','congratulations']},
-  {name:'Daffodil',          source:'B', meanings:['new beginnings','rebirth','hope','regard','unrequited love'],              tags:['hope','new','beginning','spring','rebirth','fresh','start','unrequited']},
-  {name:'Tulip (Red)',       source:'V', meanings:['perfect love','declaration of love','passion'],                            tags:['love','passion','declaration','romance','heart']},
-  {name:'Tulip (Yellow)',    source:'V', meanings:['hopeless love','cheerful thoughts','sunshine'],                            tags:['cheer','sunshine','happiness','hope','love','joy']},
-  {name:'Tulip (Purple)',    source:'V', meanings:['royalty','admiration','rebirth'],                                          tags:['admire','royalty','respect','rebirth','new']},
-  {name:'Hyacinth',          source:'B', meanings:['sincerity','forgiveness','sorrow','constancy'],                            tags:['forgiveness','sorry','apology','sincere','sorrow','constant']},
-  {name:'Hyacinth (Blue)',   source:'V', meanings:['constancy','steadfastness','I am sorry'],                                  tags:['apology','sorry','forgiveness','constancy','faithful','sincere']},
-  {name:'Hyacinth (White)',  source:'V', meanings:['loveliness','prayer','lovely you are'],                                    tags:['lovely','prayer','spiritual','beauty','admire']},
-  {name:'Snowdrop',          source:'F', meanings:['hope','consolation','purity','first sign of spring'],                     tags:['hope','comfort','consolation','grief','spring','new','purity']},
-  {name:'Crocus',            source:'F', meanings:['cheerfulness','youthful gladness','foresight'],                           tags:['cheer','joy','youth','happy','spring','new']},
-  {name:'Bluebell',          source:'F', meanings:['humility','constancy','everlasting love','gratitude'],                    tags:['love','gratitude','constant','humble','everlasting','faithful']},
-  {name:'Lily of the Valley',source:'V', meanings:['return of happiness','purity','humility','you have made my life complete'],tags:['happiness','joy','return','complete','love','gratitude','pure']},
-  {name:'Primrose',          source:'F', meanings:['early youth','young love','I cannot live without you'],                   tags:['love','longing','youth','cannot','live','miss','devotion']},
-  {name:'Anemone',           source:'F', meanings:['forsaken love','anticipation','fading hope'],                             tags:['lost','forsaken','hope','fading','longing','grief','miss']},
-  {name:'Fritillary',        source:'V', meanings:['persecution','a warning','pride'],                                        tags:['warning','pride','caution']},
-  {name:'Peony',             source:'B', meanings:['compassion','healing','good fortune','shame','bashfulness'],              tags:['healing','comfort','compassion','fortune','shame','apology','sorry']},
-  {name:'Iris',              source:'B', meanings:['hope','faith','wisdom','courage','promise','royalty'],                    tags:['hope','faith','wisdom','courage','promise','strength','new','beginning']},
-  {name:'Lavender',          source:'B', meanings:['devotion','calmness','serenity','faithfulness','distrust'],               tags:['calm','peace','devotion','faithful','serene','quiet','love']},
-  {name:'Sunflower',         source:'B', meanings:['adoration','loyalty','warmth','longevity','seeking the light'],           tags:['adore','loyal','warm','gratitude','friendship','admire','cheer','strength']},
-  {name:'Dahlia',            source:'V', meanings:['elegance','inner strength','commitment','creativity','dignity'],          tags:['strength','commitment','dignity','elegant','creative','respect']},
-  {name:'Hydrangea',         source:'V', meanings:['heartfelt emotions','gratitude for understanding'],                       tags:['gratitude','understanding','emotion','heartfelt','thanks']},
-  {name:'Carnation (Red)',   source:'V', meanings:['deep love','admiration','my heart aches for you'],                       tags:['love','ache','longing','miss','admire','heart','deep']},
-  {name:'Carnation (White)', source:'V', meanings:['pure love','good luck','sweet and lovely','innocence'],                  tags:['pure','love','luck','innocent','sweet','new']},
-  {name:'Carnation (Pink)',  source:'V', meanings:["I'll never forget you",'gratitude',"mother's love"],                     tags:['remember','forget','gratitude','thanks','miss','love','mother']},
-  {name:'Carnation (Yellow)',source:'V', meanings:['disdain','rejection','disappointment'],                                   tags:['rejection','disdain','disappointed','no','refuse']},
-  {name:'Cornflower',        source:'F', meanings:['delicacy','hope','anticipation','single blessedness'],                   tags:['hope','anticipation','delicate','single','bless']},
-  {name:'Foxglove',          source:'F', meanings:['insincerity','a wish','youth','fairy magic'],                            tags:['wish','youth','magic','wonder']},
-  {name:'Hollyhock',         source:'V', meanings:['ambition','fruitfulness','fecundity'],                                   tags:['ambition','new','growth','beginning','fertility']},
-  {name:'Larkspur',          source:'V', meanings:['lightness','levity','fickleness','an open heart'],                       tags:['light','levity','open','heart','cheer','joy']},
-  {name:'Delphinium',        source:'V', meanings:['boldness','big-heartedness','ardent attachment'],                        tags:['bold','attached','love','devotion','strong']},
-  {name:'Lupin',             source:'F', meanings:['imagination','admiration','inner strength','voraciousness'],             tags:['admire','strength','inner','imagination','courage']},
-  {name:'Lisianthus',        source:'V', meanings:['appreciation','gratitude','charisma','lifetime bond'],                   tags:['gratitude','appreciate','bond','lifetime','thanks']},
-  {name:'Gladiolus',         source:'V', meanings:['strength of character','moral integrity','infatuation','you pierce my heart'],tags:['strength','integrity','infatuation','love','pierce','heart']},
-  {name:'Sweet William',     source:'V', meanings:['gallantry','finesse','a smile','grant me one smile'],                    tags:['smile','cheer','gallant','friendship','joy']},
-  {name:'Scabiosa',          source:'V', meanings:['unfortunate love','I have lost all','widowhood'],                        tags:['loss','grief','mourning','death','sorrow','lost']},
-  {name:'Stock',             source:'V', meanings:['lasting beauty','bonds of affection','promptness'],                      tags:['affection','lasting','bond','beauty','love']},
-  {name:'Gardenia',          source:'V', meanings:['secret love','purity','refinement','you are lovely','joy'],              tags:['secret','love','pure','joy','lovely','admire','hidden']},
-  {name:'Jasmine',           source:'B', meanings:['amiability','grace','elegance','sensuality','eternal love'],             tags:['grace','love','eternal','sensual','elegant','romance']},
-  {name:'Lilac (Purple)',    source:'V', meanings:['first emotions of love','youthful innocence','humility'],                 tags:['first','love','young','innocent','humble','new','beginning']},
-  {name:'Lilac (White)',     source:'V', meanings:['youthful innocence','purity of heart','modesty'],                        tags:['innocent','pure','modest','youth','new']},
-  {name:'Honeysuckle',       source:'F', meanings:['devoted affection','generous love','bonds of love'],                     tags:['devoted','affection','generous','love','bond','lasting']},
-  {name:'Sweet Pea',         source:'V', meanings:['blissful pleasure','departure','farewell','thankfulness'],               tags:['farewell','goodbye','depart','thanks','bliss','pleasure']},
-  {name:'Wisteria',          source:'F', meanings:['steadfast love','longevity','devotion','welcome'],                       tags:['devoted','love','lasting','steadfast','welcome','longevity']},
-  {name:'Orange Blossom',    source:'V', meanings:['purity','chastity','eternal love','marriage'],                           tags:['wedding','marriage','eternal','love','pure','celebrate']},
-  {name:'Freesia',           source:'V', meanings:['innocence','thoughtfulness','friendship','trust'],                       tags:['friendship','friend','trust','innocent','thoughtful']},
-  {name:'Tuberose',          source:'V', meanings:['dangerous pleasures','forbidden love','voluptuousness'],                 tags:['forbidden','secret','desire','love','hidden','passion']},
-  {name:'Heliotrope',        source:'V', meanings:['devoted affection','I adore you','faithfulness','eternal love'],         tags:['adore','devoted','faithful','eternal','love','worship']},
-  {name:'Pansy',             source:'V', meanings:['loving thoughts','thinking of you','remembrance','tenderness'],          tags:['thinking','remember','miss','tender','love','you','thoughts']},
-  {name:'Violet',            source:'B', meanings:['modesty','faithfulness','quiet love','watchfulness'],                    tags:['faithful','quiet','love','modest','watch','devoted']},
-  {name:'Forget-Me-Not',     source:'B', meanings:['true love','remembrance','lasting bonds','do not forget me'],            tags:['remember','forget','miss','love','lasting','bond','gone','loss']},
-  {name:'Daisy',             source:'F', meanings:['innocence','loyal love','cheerfulness','I will think about it'],         tags:['innocent','loyal','cheer','joy','love','friendship','fresh']},
-  {name:'Chamomile',         source:'F', meanings:['patience in adversity','energy in adversity','humility'],                tags:['patience','adversity','humble','endure','strength','calm']},
-  {name:'Clover (Four-Leaf)',source:'F', meanings:['good luck','be mine','I will be faithful to you'],                       tags:['luck','faithful','mine','love','fortune','new']},
-  {name:'Clover (Red)',      source:'F', meanings:['industry','good luck','providence'],                                     tags:['luck','fortune','work','new','beginning']},
-  {name:'Dandelion',         source:'F', meanings:['faithfulness','happiness','wishes'],                                     tags:['wish','happiness','faithful','love','hope']},
-  {name:'Thistle',           source:'F', meanings:['austerity','independence','retaliation','nobility'],                     tags:['independence','strong','noble','strength','courage']},
-  {name:'Yarrow',            source:'F', meanings:['healing','courage in love','war','everlasting love'],                   tags:['healing','courage','love','everlasting','strength','comfort']},
-  {name:'Rosemary',          source:'F', meanings:['remembrance','fidelity','loyalty','wisdom','your presence revives me'], tags:['remember','faithful','loyal','wisdom','miss','revive','grief','loss']},
-  {name:'Thyme',             source:'F', meanings:['courage','strength','activity','bravery'],                              tags:['courage','strength','brave','active','bold']},
-  {name:'Sage',              source:'F', meanings:['wisdom','long life','esteem','domestic virtue'],                        tags:['wisdom','respect','esteem','virtue','long','life']},
-  {name:'Mint',              source:'F', meanings:['virtue','warmth of feeling','cordiality'],                              tags:['warm','virtue','cordial','friendship','cheer']},
-  {name:'Rue',               source:'F', meanings:['disdain','bitterness','clear vision','repentance'],                     tags:['repent','bitter','sorry','disdain','regret','apology']},
-  {name:'Bay Laurel',        source:'F', meanings:['glory','reward of merit','victory','I change but in dying'],            tags:['victory','glory','merit','reward','achievement','congratulations']},
-  {name:'Orchid',            source:'V', meanings:['refined beauty','rare love','luxury','long life','strength'],           tags:['beauty','rare','love','luxury','strength','admire','special']},
-  {name:'Lotus',             source:'F', meanings:['enlightenment','rebirth','purity of heart','spiritual awakening'],      tags:['rebirth','pure','spiritual','new','begin','enlighten','peace']},
-  {name:'Magnolia',          source:'F', meanings:['dignity','nobility','perseverance','natural beauty','purity'],          tags:['dignity','noble','persevere','strength','beauty','pure']},
-  {name:'Cherry Blossom',    source:'F', meanings:['beauty of life','transience','renewal','feminine beauty'],              tags:['beauty','transient','renewal','new','begin','life','spring']},
-  {name:'Camellia (Red)',    source:'V', meanings:["you're a flame in my heart",'passionate love','admiration'],            tags:['love','passion','flame','heart','admire','romance']},
-  {name:'Camellia (White)',  source:'V', meanings:['perfection','loveliness','you\'re adorable'],                          tags:['perfect','lovely','adorable','admire','beauty','love']},
-  {name:'Camellia (Pink)',   source:'V', meanings:['longing','missing you','good luck'],                                    tags:['miss','longing','luck','absent','thinking']},
-  {name:'Hibiscus',          source:'F', meanings:['delicate beauty','fame','seize the opportunity','consumed by love'],    tags:['beauty','consumed','love','passion','delicate']},
-  {name:'Protea',            source:'F', meanings:['courage','transformation','diversity','daring'],                        tags:['courage','transform','dare','bold','new','change','beginning']},
-  {name:'Bird of Paradise',  source:'F', meanings:['joyfulness','paradise','magnificent beauty','freedom'],                 tags:['joy','paradise','free','beauty','celebrate','happiness']},
-  {name:'Anthurium',         source:'F', meanings:['hospitality','happiness','abundance','lasting love'],                   tags:['happy','abundance','lasting','love','welcome','gratitude']},
-  {name:'Chrysanthemum (Red)',   source:'B', meanings:['love','deep passion'],                                              tags:['love','passion','deep','heart','romance']},
-  {name:'Chrysanthemum (White)', source:'B', meanings:['truth','loyal love','honesty','grief'],                             tags:['truth','loyal','honest','grief','loss','sorrow','pure']},
-  {name:'Chrysanthemum (Yellow)',source:'B', meanings:['slighted love','neglected love','sorrow'],                          tags:['slighted','neglect','sorrow','grief','rejected']},
-  {name:'Aster',             source:'B', meanings:['patience','wisdom','daintiness','a talisman of love'],                 tags:['patience','wisdom','love','talisman','protect']},
-  {name:'Marigold',          source:'B', meanings:['grief','jealousy','cruelty','despair','sacred love'],                  tags:['grief','sacred','loss','mourning','despair','death','sorrow']},
-  {name:'Zinnia',            source:'V', meanings:['thoughts of absent friends','lasting affection','constancy'],           tags:['absent','miss','friend','lasting','affection','remember','thinking']},
-  {name:'Cosmos',            source:'V', meanings:['order','tranquility','modesty','joy in simple things'],                 tags:['tranquil','peace','calm','joy','simple','modest','order']},
-  {name:'Heather (Purple)',  source:'F', meanings:['admiration','solitude','beauty'],                                       tags:['admire','solitude','beauty','alone','quiet']},
-  {name:'Heather (White)',   source:'F', meanings:['good luck','protection','wishes come true'],                            tags:['luck','protect','wish','fortune','new']},
-  {name:'Goldenrod',         source:'F', meanings:['encouragement','good fortune','treasure is near'],                      tags:['encourage','fortune','treasure','new','begin','hope','congratulations']},
-  {name:'Hawthorn Blossom',  source:'F', meanings:['hope','supreme happiness','fertility','protection'],                    tags:['hope','happiness','protect','fertility','new','spring']},
-  {name:'Elder Blossom',     source:'F', meanings:['compassion','zealousness','humility','sorrow'],                         tags:['compassion','humble','sorrow','comfort','grief']},
-  {name:'Acacia',            source:'V', meanings:['chaste love','friendship','secret love','immortality'],                 tags:['secret','love','friendship','immortal','chaste','hidden']},
-  {name:'Mimosa',            source:'V', meanings:['sensitivity','chasteness','secret love'],                              tags:['sensitive','secret','love','hidden','delicate']},
-  {name:'Almond Blossom',    source:'F', meanings:['hope','new beginnings','indiscretion','heedlessness'],                 tags:['hope','new','beginning','spring','fresh','start']},
-  {name:'Ranunculus',        source:'V', meanings:['radiance','charm','I am dazzled by you','attractiveness'],             tags:['dazzled','charm','radiant','admire','beauty','love','enchant']},
-  {name:"Baby's Breath",     source:'V', meanings:['everlasting love','innocence','purity','trust'],                       tags:['everlasting','love','innocent','pure','trust','eternal']},
-  {name:'Stephanotis',       source:'V', meanings:['happiness in marriage','good luck','desire to travel'],                tags:['marriage','wedding','luck','happiness','celebrate']},
-  {name:'Lemon Verbena',     source:'V', meanings:['enchantment','you have bewitched me','sensitivity'],                   tags:['enchant','bewitched','love','captivate','admire','fascinate']},
-  {name:'Wallflower',        source:'V', meanings:['fidelity in adversity','constancy','lasting beauty'],                  tags:['faithful','adversity','constant','lasting','strength','devoted']},
-  {name:'Nigella',           source:'V', meanings:['perplexity','you perplex me','a puzzle','kiss me twice before I rise'],tags:['puzzle','perplex','mystery','wonder','kiss','love']},
-  {name:'Love-in-a-Mist',    source:'V', meanings:['perplexity','delicate feelings','entanglement in love'],               tags:['entangle','love','delicate','confused','mystery','wonder']},
-  {name:'Canterbury Bell',   source:'V', meanings:['acknowledgement','constancy','faith'],                                 tags:['faithful','constant','faith','acknowledge','trust']},
-  {name:'Columbine',         source:'F', meanings:['folly','ingratitude','deserted lover','resolution'],                   tags:['deserted','forsaken','resolve','lost','love','grief']},
-  {name:'Cyclamen',          source:'V', meanings:['resignation','diffidence','goodbye','I must leave thee'],              tags:['goodbye','farewell','leave','depart','resignation','miss']},
-  {name:'Eglantine',         source:'V', meanings:['poetry','genius','I wound to heal','a tender heart'],                  tags:['tender','heart','poetry','heal','wound','love']},
-  {name:'Fuchsia',           source:'V', meanings:['humble love','confiding love','taste'],                                tags:['humble','love','confide','trust','tender']},
-  {name:'Geranium (Red)',    source:'V', meanings:['comfort','stupidity'],                                                  tags:['comfort','consolation','care']},
-  {name:'Geranium (Pink)',   source:'V', meanings:['preference','I prefer you','doubt'],                                   tags:['prefer','choose','love','doubt']},
-  {name:'Globe Amaranth',    source:'V', meanings:['immortality','unfading love'],                                         tags:['immortal','unfading','love','eternal','lasting']},
-  {name:'Myrtle',            source:'B', meanings:['love','mirth','marriage','Hebrew emblem of marriage'],                 tags:['love','marriage','mirth','wedding','joy','celebrate']},
-  {name:'Passionflower',     source:'F', meanings:['faith','religious superstition','susceptibility','piety'],             tags:['faith','spiritual','piety','devotion','believe']},
-  {name:'Periwinkle',        source:'F', meanings:['tender recollections','early friendship','pleasures of memory'],       tags:['memory','remember','friendship','tender','early','past']},
-  {name:'Poppy (Red)',       source:'B', meanings:['consolation','sleep','imagination','extravagance'],                    tags:['consolation','comfort','grief','sleep','remember','loss']},
-  {name:'Poppy (White)',     source:'F', meanings:['sleep','eternal slumber','I sleep, I forget','oblivion'],              tags:['sleep','forget','oblivion','rest','peace','grief','death']},
-  {name:'Snapdragon',        source:'V', meanings:['presumption','no','deception','gracious lady'],                        tags:['no','refuse','deception','presumption','caution']},
-  {name:'Verbena',           source:'F', meanings:['pray for me','sensibility','pure love','I weep for thee'],             tags:['pray','weep','grief','comfort','love','pure','sorrow']},
-  {name:'Water Lily',        source:'F', meanings:['purity of heart','eloquence','persuasion','peace'],                   tags:['peace','pure','eloquent','calm','serene','quiet']},
-  {name:'Weigela',           source:'V', meanings:['accept a faithful heart'],                                             tags:['faithful','accept','heart','love','devoted']},
+  // ROSES
+  {name:'Red Rose',              source:'V', meanings:['passionate love','desire','romance','I love you'],                              tags:['love','passion','romance','desire','longing','heart','deep']},
+  {name:'White Rose',            source:'V', meanings:['purity','innocence','sympathy','new beginnings','reverence'],                   tags:['sympathy','grief','purity','new','beginning','comfort','innocent','condolence']},
+  {name:'Pink Rose',             source:'V', meanings:['admiration','gratitude','gentle affection','appreciation'],                     tags:['gratitude','thanks','admiration','appreciate','friendship','gentle','affection']},
+  {name:'Yellow Rose',           source:'V', meanings:['friendship','joy','warmth','platonic love'],                                    tags:['friendship','friend','joy','happy','warm','cheer','platonic']},
+  {name:'Orange Rose',           source:'V', meanings:['enthusiasm','desire','fascination','passionate romance'],                       tags:['passion','desire','energy','enthusiasm','romance','love']},
+  {name:'Coral Rose',            source:'V', meanings:['desire','modesty','friendship blossoming into love'],                          tags:['friendship','love','desire','blossoming','beginning','romantic']},
+  {name:'Lavender Rose',         source:'V', meanings:['enchantment','love at first sight','mystery','wonder'],                        tags:['love','wonder','mystery','enchant','first','sight','admire']},
+  {name:'Dark Crimson Rose',     source:'V', meanings:['mourning','deep grief','unconscious beauty'],                                  tags:['grief','mourning','loss','death','sorrow','dark']},
+  {name:'Moss Rose',             source:'V', meanings:['confessions of love','voluptuous love','superior merit'],                      tags:['love','confess','pleasure','romantic','desire','merit']},
+  {name:'Bridal Rose',           source:'V', meanings:['happy love','unity','celebration of marriage'],                                tags:['wedding','marriage','celebrate','unity','happy','love','congratulations']},
+  {name:'Burgundy Rose',         source:'V', meanings:['unconscious beauty','beauty unaware','I love you unknowingly'],                tags:['beauty','love','unconscious','deep','admire']},
+  {name:'Peach Rose',            source:'V', meanings:['sincerity','gratitude','modesty','genuine warmth'],                            tags:['sincere','gratitude','thanks','warm','modest','genuine']},
+  {name:'Black Rose',            source:'F', meanings:['farewell','death','mystery','dark rebirth'],                                   tags:['death','farewell','goodbye','mystery','dark','mourning','loss']},
+  {name:'Blue Rose',             source:'F', meanings:['mystery','the impossible','attaining the unattainable','wonder'],              tags:['mystery','wonder','impossible','dream','enchant','rare']},
+  {name:'Tea Rose',              source:'V', meanings:["I'll remember always",'transient beauty','I will hold this dear'],             tags:['remember','miss','beauty','transient','cherish','lasting']},
+  // SPRING BULBS
+  {name:'Daffodil',              source:'B', meanings:['new beginnings','rebirth','hope','regard','unrequited love'],                  tags:['hope','new','beginning','spring','rebirth','fresh','start','unrequited']},
+  {name:'Tulip (Red)',           source:'V', meanings:['perfect love','declaration of love','passion'],                                tags:['love','passion','declaration','romance','heart']},
+  {name:'Tulip (Yellow)',        source:'V', meanings:['hopeless love','cheerful thoughts','sunshine'],                                tags:['cheer','sunshine','happiness','hope','love','joy']},
+  {name:'Tulip (Purple)',        source:'V', meanings:['royalty','admiration','rebirth'],                                              tags:['admire','royalty','respect','rebirth','new']},
+  {name:'Tulip (White)',         source:'V', meanings:['forgiveness','worthiness','respect','pure love'],                              tags:['forgive','forgiveness','pure','love','respect','sorry']},
+  {name:'Tulip (Variegated)',    source:'V', meanings:['beautiful eyes','you have beautiful eyes'],                                    tags:['beauty','eyes','admire','lovely','enchant']},
+  {name:'Hyacinth (Blue)',       source:'V', meanings:['constancy','steadfastness','I am sorry'],                                      tags:['apology','sorry','forgiveness','constancy','faithful','sincere']},
+  {name:'Hyacinth (White)',      source:'V', meanings:['loveliness','prayer','lovely you are'],                                        tags:['lovely','prayer','spiritual','beauty','admire','pure']},
+  {name:'Hyacinth (Purple)',     source:'B', meanings:['sorrow','please forgive me','forgiveness'],                                    tags:['apology','sorry','forgive','sorrow','sincere','regret']},
+  {name:'Hyacinth (Pink)',       source:'V', meanings:['playfulness','sport','jovial'],                                                tags:['joy','cheer','playful','happy','fun']},
+  {name:'Hyacinth (Yellow)',     source:'V', meanings:['jealousy'],                                                                    tags:['jealousy','envy','disdain']},
+  {name:'Snowdrop',              source:'F', meanings:['hope','consolation','purity','first sign of spring'],                          tags:['hope','comfort','consolation','grief','spring','new','purity']},
+  {name:'Crocus',                source:'F', meanings:['cheerfulness','youthful gladness','foresight','do not abuse'],                 tags:['cheer','joy','youth','happy','spring','new','foresight']},
+  {name:'Fritillary',            source:'V', meanings:['persecution','a warning','power'],                                             tags:['warning','caution','pride','power']},
+  {name:'Allium',                source:'F', meanings:['patience','good fortune','unity','prosperity'],                                tags:['patience','fortune','unity','prosperity','new','luck']},
+  {name:'Muscari',               source:'V', meanings:['lasting love','powerful love','do not despair'],                               tags:['love','lasting','despair','hope','powerful','comfort']},
+  {name:'Scilla',                source:'V', meanings:['forgive and forget','sweet innocence','solitude'],                             tags:['forgive','forget','innocent','solitude','sorry','peace']},
+  {name:'Crown Imperial',        source:'V', meanings:['majesty','power','pride','haughtiness'],                                       tags:['pride','power','majesty','royalty','strength']},
+  {name:'Lily of the Valley',    source:'V', meanings:['return of happiness','purity','humility','you have made my life complete'],    tags:['happiness','joy','return','complete','love','gratitude','pure','humble']},
+  {name:'Primrose',              source:'F', meanings:['early youth','young love','I cannot live without you','eternal love'],         tags:['love','longing','youth','cannot','live','miss','devotion','eternal']},
+  {name:'Cowslip',               source:'F', meanings:['grace','winning grace','pensiveness','you are my divinity'],                   tags:['grace','divine','love','pensive','beauty']},
+  {name:'Primula',               source:'V', meanings:['unpatronized merit','neglected merit'],                                        tags:['neglect','merit','unappreciated','sorrow']},
+  {name:'Jonquil',               source:'V', meanings:['I desire a return of affection','have pity on my passion'],                   tags:['desire','return','affection','pity','passion','longing','love']},
+  // SUMMER GARDEN
+  {name:'Peony',                 source:'B', meanings:['compassion','healing','good fortune','shame','bashfulness'],                   tags:['healing','comfort','compassion','fortune','shame','apology','sorry']},
+  {name:'Iris (Purple)',         source:'B', meanings:['wisdom','faith','hope','valour','royalty'],                                    tags:['hope','faith','wisdom','courage','promise','strength','new','beginning']},
+  {name:'Iris (Blue)',           source:'B', meanings:['faith','hope','I have a message for thee'],                                    tags:['hope','faith','message','promise','new']},
+  {name:'Iris (Yellow)',         source:'B', meanings:['passion','ardour','attraction'],                                               tags:['passion','attraction','love','ardour','desire']},
+  {name:'Iris (White)',          source:'B', meanings:['purity','innocence','you are innocent'],                                       tags:['pure','innocent','purity','new','honest']},
+  {name:'Lavender',              source:'B', meanings:['devotion','calmness','serenity','faithfulness'],                               tags:['calm','peace','devotion','faithful','serene','quiet','love']},
+  {name:'Sunflower (Tall)',      source:'B', meanings:['adoration','loyalty','warmth','haughtiness'],                                  tags:['adore','loyal','warm','gratitude','friendship','admire','cheer','strength']},
+  {name:'Sunflower (Dwarf)',     source:'V', meanings:['adoration','your devout admirer'],                                             tags:['adore','devoted','admire','worship','love']},
+  {name:'Dahlia',                source:'V', meanings:['elegance','inner strength','commitment','creativity','dignity'],               tags:['strength','commitment','dignity','elegant','creative','respect']},
+  {name:'Dahlia (Striped)',      source:'V', meanings:['forever thine','eternal devotion'],                                            tags:['eternal','devoted','love','forever','lasting']},
+  {name:'Hydrangea',             source:'V', meanings:['heartfelt emotions','gratitude for understanding'],                            tags:['gratitude','understanding','emotion','heartfelt','thanks']},
+  {name:'Carnation (Red)',       source:'V', meanings:['deep love','admiration','my heart aches for you'],                            tags:['love','ache','longing','miss','admire','heart','deep']},
+  {name:'Carnation (White)',     source:'V', meanings:['pure love','good luck','sweet and lovely','innocence'],                       tags:['pure','love','luck','innocent','sweet','new']},
+  {name:'Carnation (Pink)',      source:'V', meanings:["I'll never forget you",'gratitude',"mother's love"],                          tags:['remember','forget','gratitude','thanks','miss','love','mother']},
+  {name:'Carnation (Yellow)',    source:'V', meanings:['disdain','rejection','you have disappointed me'],                             tags:['rejection','disdain','disappointed','no','refuse']},
+  {name:'Carnation (Purple)',    source:'V', meanings:['capriciousness','whimsical','unpredictability'],                              tags:['capricious','whimsy','fickle']},
+  {name:'Cornflower',            source:'F', meanings:['delicacy','hope','anticipation','single blessedness'],                        tags:['hope','anticipation','delicate','single','bless','new']},
+  {name:'Foxglove',              source:'F', meanings:['insincerity','a wish','youth','fairy magic'],                                 tags:['wish','youth','magic','wonder','caution']},
+  {name:'Hollyhock',             source:'V', meanings:['ambition','fruitfulness','fecundity'],                                        tags:['ambition','new','growth','beginning','fertility','hope']},
+  {name:'Larkspur (Pink)',       source:'V', meanings:['fickleness','an open heart','levity'],                                        tags:['open','heart','cheer','joy','levity','light']},
+  {name:'Larkspur (Purple)',     source:'V', meanings:['haughtiness','arrogance'],                                                    tags:['pride','haughty','arrogance','strength']},
+  {name:'Delphinium',            source:'V', meanings:['boldness','big-heartedness','ardent attachment'],                             tags:['bold','attached','love','devotion','strong','courage']},
+  {name:'Lupin',                 source:'F', meanings:['imagination','admiration','inner strength','voraciousness'],                  tags:['admire','strength','inner','imagination','courage','bold']},
+  {name:'Lisianthus',            source:'V', meanings:['appreciation','gratitude','charisma','lifetime bond'],                        tags:['gratitude','appreciate','bond','lifetime','thanks','lasting']},
+  {name:'Gladiolus',             source:'V', meanings:['strength of character','moral integrity','infatuation','you pierce my heart'],tags:['strength','integrity','infatuation','love','pierce','heart','bold']},
+  {name:'Sweet William',         source:'V', meanings:['gallantry','finesse','a smile','grant me one smile'],                         tags:['smile','cheer','gallant','friendship','joy','warmth']},
+  {name:'Scabiosa',              source:'V', meanings:['unfortunate love','I have lost all','widowhood'],                             tags:['loss','grief','mourning','death','sorrow','lost','widow']},
+  {name:'Stock',                 source:'V', meanings:['lasting beauty','bonds of affection','you will always be beautiful to me'],   tags:['affection','lasting','bond','beauty','love','forever']},
+  {name:'Phlox',                 source:'V', meanings:['our souls are united','unanimity','sweet dreams'],                            tags:['united','soul','dream','love','together','bond']},
+  {name:'Salvia (Blue)',         source:'V', meanings:['I think of you','wisdom','esteem'],                                           tags:['thinking','thoughts','wisdom','esteem','miss','you']},
+  {name:'Salvia (Red)',          source:'V', meanings:['energy','a burning desire'],                                                  tags:['desire','energy','passion','burning','love']},
+  {name:'Statice',               source:'V', meanings:['remembrance','I miss you','success'],                                         tags:['remember','miss','success','lasting','memory']},
+  {name:'Spirea',                source:'V', meanings:['victory','work','achievement'],                                               tags:['victory','work','achievement','new','begin']},
+  {name:'Coreopsis',             source:'V', meanings:['always cheerful','I am always merry'],                                        tags:['cheer','happy','always','merry','joy','bright']},
+  {name:'Lychnis',               source:'V', meanings:['wit','religious enthusiasm','sunbeaming eyes'],                               tags:['wit','religious','spiritual','eyes','admire','beauty']},
+  // FRAGRANT & CLIMBING
+  {name:'Gardenia',              source:'V', meanings:['secret love','purity','refinement','you are lovely','joy'],                   tags:['secret','love','pure','joy','lovely','admire','hidden']},
+  {name:'Jasmine (White)',       source:'B', meanings:['amiability','grace','you are amiable','sensuality'],                         tags:['grace','love','amiable','sensual','elegant','romance','gentle']},
+  {name:'Jasmine (Yellow)',      source:'B', meanings:['elegance','grace','modesty'],                                                 tags:['elegant','grace','modest','admire','beauty']},
+  {name:'Lilac (Purple)',        source:'V', meanings:['first emotions of love','youthful innocence','humility'],                    tags:['first','love','young','innocent','humble','new','beginning']},
+  {name:'Lilac (White)',         source:'V', meanings:['youthful innocence','purity of heart','modesty'],                            tags:['innocent','pure','modest','youth','new','beginning']},
+  {name:'Honeysuckle',           source:'F', meanings:['devoted affection','generous love','bonds of love','fidelity'],              tags:['devoted','affection','generous','love','bond','lasting','faithful']},
+  {name:'Sweet Pea',             source:'V', meanings:['blissful pleasure','departure','farewell','thankfulness'],                   tags:['farewell','goodbye','depart','thanks','bliss','pleasure']},
+  {name:'Wisteria',              source:'F', meanings:['steadfast love','longevity','devotion','welcome'],                           tags:['devoted','love','lasting','steadfast','welcome','longevity']},
+  {name:'Orange Blossom',        source:'V', meanings:['purity','chastity','eternal love','marriage'],                               tags:['wedding','marriage','eternal','love','pure','celebrate']},
+  {name:'Freesia',               source:'V', meanings:['innocence','thoughtfulness','friendship','trust'],                           tags:['friendship','friend','trust','innocent','thoughtful']},
+  {name:'Tuberose',              source:'V', meanings:['dangerous pleasures','forbidden love','voluptuousness'],                     tags:['forbidden','secret','desire','love','hidden','passion']},
+  {name:'Heliotrope',            source:'V', meanings:['devoted affection','I adore you','faithfulness','eternal love'],             tags:['adore','devoted','faithful','eternal','love','worship']},
+  {name:'Stephanotis',           source:'V', meanings:['happiness in marriage','good luck','desire to travel'],                      tags:['marriage','wedding','luck','happiness','celebrate','good']},
+  {name:'Lemon Verbena',         source:'V', meanings:['enchantment','you have bewitched me','sensitivity'],                        tags:['enchant','bewitched','love','captivate','admire','fascinate']},
+  {name:'Night-Scented Stock',   source:'V', meanings:['lasting beauty','you will always be beautiful to me'],                      tags:['beauty','lasting','always','love','admire']},
+  {name:'Honeysuckle (Coral)',   source:'V', meanings:['the colour of my fate','bonds','generous affection'],                        tags:['bond','fate','affection','devoted','generous']},
+  {name:'Camellia (Red)',        source:'V', meanings:["you're a flame in my heart",'passionate love','admiration'],                 tags:['love','passion','flame','heart','admire','romance']},
+  {name:'Camellia (White)',      source:'V', meanings:['perfection','loveliness','you\'re adorable'],                               tags:['perfect','lovely','adorable','admire','beauty','love']},
+  {name:'Camellia (Pink)',       source:'V', meanings:['longing','missing you','good luck'],                                         tags:['miss','longing','luck','absent','thinking']},
+  // WILDFLOWERS & MEADOW
+  {name:'Pansy',                 source:'V', meanings:['loving thoughts','thinking of you','remembrance','tenderness'],              tags:['thinking','remember','miss','tender','love','you','thoughts']},
+  {name:'Violet (Purple)',       source:'B', meanings:['modesty','faithfulness','you occupy my thoughts'],                           tags:['faithful','quiet','love','modest','thoughts','devoted']},
+  {name:'Violet (White)',        source:'B', meanings:['candour','innocence','take a chance on happiness'],                          tags:['innocent','candour','honest','happiness','new','chance']},
+  {name:'Forget-Me-Not',         source:'B', meanings:['true love','remembrance','lasting bonds','do not forget me'],                tags:['remember','forget','miss','love','lasting','bond','gone','loss']},
+  {name:'Daisy (White)',         source:'F', meanings:['innocence','loyal love','cheerfulness','I will think about it'],             tags:['innocent','loyal','cheer','joy','love','friendship','fresh']},
+  {name:'Daisy (Michaelmas)',    source:'F', meanings:['farewell','afterthought','a parting gift'],                                  tags:['farewell','goodbye','depart','after','parting','miss']},
+  {name:'Chamomile',             source:'F', meanings:['patience in adversity','energy in adversity','humility'],                    tags:['patience','adversity','humble','endure','strength','calm']},
+  {name:'Clover (Four-Leaf)',    source:'F', meanings:['good luck','be mine','I will be faithful to you'],                           tags:['luck','faithful','mine','love','fortune','new']},
+  {name:'Clover (Red)',          source:'F', meanings:['industry','good luck','providence'],                                         tags:['luck','fortune','work','new','beginning','industry']},
+  {name:'Clover (White)',        source:'F', meanings:['think of me','I promise','faithfulness'],                                    tags:['think','promise','faithful','love','devotion','miss']},
+  {name:'Dandelion',             source:'F', meanings:['faithfulness','happiness','love\'s oracle','wishes'],                        tags:['wish','happiness','faithful','love','hope','oracle']},
+  {name:'Thistle',               source:'F', meanings:['austerity','independence','retaliation','nobility'],                        tags:['independence','strong','noble','strength','courage','bold']},
+  {name:'Yarrow',                source:'F', meanings:['healing','cure for heartache','everlasting love','war'],                    tags:['healing','courage','love','everlasting','strength','comfort','heartache']},
+  {name:'Speedwell',             source:'V', meanings:['female fidelity','facility','good speed'],                                   tags:['faithful','fidelity','speed','good','luck','woman']},
+  {name:'Meadowsweet',           source:'F', meanings:['uselessness','beauty alone','feminine beauty'],                              tags:['beauty','feminine','alone','love','admire']},
+  {name:'Red Campion',           source:'F', meanings:['matrimony','you are my world'],                                              tags:['marriage','wedding','world','love','devoted']},
+  {name:'Cow Parsley',           source:'F', meanings:['sanctuary','shelter','protection'],                                          tags:['shelter','protect','safety','comfort','care']},
+  {name:'Greater Celandine',     source:'F', meanings:['joys to come','future happiness'],                                           tags:['future','happiness','hope','joy','new','begin']},
+  {name:'Anemone (Garden)',      source:'F', meanings:['forsaken love','anticipation','fading hope','protection'],                   tags:['lost','forsaken','hope','fading','longing','grief','miss']},
+  {name:'Anemone (Wood)',        source:'F', meanings:['desertion','forsaken','windflower','expectation'],                           tags:['deserted','forsaken','expect','wait','longing']},
+  {name:'Bachelor\'s Button',    source:'V', meanings:['celibacy','single blessedness','a wish'],                                   tags:['single','wish','celibate','hope','alone','new']},
+  {name:'Buttercup',             source:'F', meanings:['ingratitude','childishness','riches','cheerfulness'],                        tags:['cheer','riches','youth','happy','joy','sunshine']},
+  {name:'Bindweed',              source:'V', meanings:['humility','bonds','night'],                                                  tags:['humble','bond','night','quiet','modest']},
+  {name:'Bittersweet',           source:'V', meanings:['truth','sarcasm'],                                                          tags:['truth','sarcasm','bittersweet','mixed','honest']},
+  // HERBS & KITCHEN GARDEN
+  {name:'Rosemary',              source:'F', meanings:['remembrance','fidelity','loyalty','wisdom','your presence revives me'],     tags:['remember','faithful','loyal','wisdom','miss','revive','grief','loss']},
+  {name:'Thyme',                 source:'F', meanings:['courage','strength','activity','bravery'],                                  tags:['courage','strength','brave','active','bold']},
+  {name:'Sage',                  source:'F', meanings:['wisdom','long life','esteem','domestic virtue'],                            tags:['wisdom','respect','esteem','virtue','long','life']},
+  {name:'Mint',                  source:'F', meanings:['virtue','warmth of feeling','cordiality'],                                  tags:['warm','virtue','cordial','friendship','cheer','friendly']},
+  {name:'Rue',                   source:'F', meanings:['disdain','bitterness','clear vision','repentance'],                         tags:['repent','bitter','sorry','disdain','regret','apology']},
+  {name:'Bay Laurel',            source:'F', meanings:['glory','reward of merit','victory','I change but in dying'],                tags:['victory','glory','merit','reward','achievement','congratulations']},
+  {name:'Basil',                 source:'F', meanings:['hatred','love','hostility — or passionate love'],                           tags:['love','hate','hostile','passion','strong']},
+  {name:'Marjoram',              source:'F', meanings:['blushes','beauty','happiness in love'],                                     tags:['blush','happiness','love','beauty','joy','romantic']},
+  {name:'Parsley',               source:'F', meanings:['festivity','entertainment','useful knowledge'],                             tags:['celebrate','feast','festival','joy','useful']},
+  {name:'Fennel',                source:'F', meanings:['worthy of all praise','force','strength'],                                   tags:['praise','worthy','strength','force','admire','respect']},
+  {name:'Lemon Balm',            source:'F', meanings:['pleasantry','sympathy','do not misuse me'],                                 tags:['pleasant','sympathy','joke','comfort','misuse','friendly']},
+  {name:'Hyssop',                source:'F', meanings:['cleanliness','sacrifice','purification'],                                   tags:['pure','sacrifice','clean','spiritual','new']},
+  {name:'Borage',                source:'F', meanings:['courage','bluntness','I am direct with you'],                               tags:['courage','bold','direct','honest','blunt','strength']},
+  {name:'Peppermint',            source:'F', meanings:['warmth of feeling','cordiality'],                                           tags:['warm','cordial','feeling','friendly','kind']},
+  {name:'Tansy',                 source:'F', meanings:['I declare war against you','hostile thoughts'],                             tags:['war','hostile','declare','against','oppose']},
+  {name:'Tarragon',              source:'F', meanings:['lasting interest','unselfish sharing'],                                     tags:['lasting','share','unselfish','interest']},
+  // EXOTIC & TROPICAL
+  {name:'Orchid',                source:'V', meanings:['refined beauty','rare love','luxury','long life','strength'],               tags:['beauty','rare','love','luxury','strength','admire','special']},
+  {name:'Orchid (Cattleya)',     source:'V', meanings:['mature charm','you are charming'],                                          tags:['charm','mature','admire','lovely','beauty']},
+  {name:'Lotus',                 source:'F', meanings:['enlightenment','rebirth','purity of heart','spiritual awakening'],          tags:['rebirth','pure','spiritual','new','begin','enlighten','peace']},
+  {name:'Magnolia',              source:'F', meanings:['dignity','nobility','perseverance','natural beauty','purity'],              tags:['dignity','noble','persevere','strength','beauty','pure']},
+  {name:'Cherry Blossom',        source:'F', meanings:['beauty of life','transience','renewal','feminine beauty'],                  tags:['beauty','transient','renewal','new','begin','life','spring']},
+  {name:'Hibiscus',              source:'F', meanings:['delicate beauty','fame','seize the opportunity','consumed by love'],        tags:['beauty','consumed','love','passion','delicate','fame']},
+  {name:'Protea',                source:'F', meanings:['courage','transformation','diversity','daring'],                            tags:['courage','transform','dare','bold','new','change','beginning']},
+  {name:'Bird of Paradise',      source:'F', meanings:['joyfulness','paradise','magnificent beauty','freedom'],                     tags:['joy','paradise','free','beauty','celebrate','happiness']},
+  {name:'Anthurium',             source:'F', meanings:['hospitality','happiness','abundance','lasting love'],                       tags:['happy','abundance','lasting','love','welcome','gratitude']},
+  {name:'Plumeria',              source:'F', meanings:['new life','spring','beauty','positivity'],                                  tags:['new','life','spring','beauty','positive','hope']},
+  {name:'Bougainvillea',         source:'F', meanings:['passion','beauty in adversity','free spirit'],                              tags:['passion','beauty','adversity','perfect','free','spirit']},
+  {name:'Ginger Flower',         source:'F', meanings:['strength','pride','proud and fine'],                                        tags:['strength','pride','strong','proud','bold']},
+  {name:'Frangipani',            source:'F', meanings:['spring time','life','new beginnings'],                                      tags:['spring','life','new','begin','hope','fresh']},
+  // TREES & BLOSSOMS
+  {name:'Hawthorn Blossom',      source:'F', meanings:['hope','supreme happiness','fertility','protection'],                        tags:['hope','happiness','protect','fertility','new','spring','bless']},
+  {name:'Elder Blossom',         source:'F', meanings:['compassion','zealousness','humility','sorrow'],                             tags:['compassion','humble','sorrow','comfort','grief','care']},
+  {name:'Acacia',                source:'V', meanings:['chaste love','friendship','secret love','immortality'],                     tags:['secret','love','friendship','immortal','chaste','hidden','lasting']},
+  {name:'Mimosa',                source:'V', meanings:['sensitivity','chasteness','secret love'],                                   tags:['sensitive','secret','love','hidden','delicate']},
+  {name:'Almond Blossom',        source:'F', meanings:['hope','new beginnings','indiscretion','heedlessness'],                      tags:['hope','new','beginning','spring','fresh','start']},
+  {name:'Apple Blossom',         source:'F', meanings:['preference','good fortune','I prefer you'],                                 tags:['prefer','fortune','choose','love','good','luck']},
+  {name:'Plum Blossom',          source:'F', meanings:['beauty and longevity','perseverance','resilience'],                        tags:['beauty','persevere','resilience','strength','lasting','long']},
+  {name:'Myrtle',                source:'B', meanings:['love','mirth','marriage','Hebrew emblem of marriage'],                      tags:['love','marriage','mirth','wedding','joy','celebrate']},
+  {name:'Hazel',                 source:'F', meanings:['reconciliation','peace','meditation','wisdom'],                             tags:['reconcile','peace','wisdom','meditation','forgive','calm']},
+  {name:'Rowan Blossom',         source:'F', meanings:['protection from enchantment','I seek your protection'],                     tags:['protect','enchant','seek','guard','shelter']},
+  {name:'Blackthorn Blossom',    source:'F', meanings:['difficulties will be overcome','hope after hardship'],                      tags:['overcome','strength','hope','hardship','strife','resilience']},
+  {name:'Lime Blossom',          source:'F', meanings:['conjugal love','matrimony'],                                                tags:['love','marriage','conjugal','wedding','bond']},
+  {name:'Laburnum',              source:'V', meanings:['pensive beauty','forsaken'],                                                tags:['forsaken','pensive','beauty','sorrow','lost']},
+  {name:'Calla Lily',            source:'V', meanings:['beauty','magnificence','regal','wedding'],                                  tags:['beauty','magnificent','regal','wedding','marriage','celebrate']},
+  // AUTUMN & LATE SEASON
+  {name:'Chrysanthemum (Red)',    source:'B', meanings:['love','deep passion','I love you'],                                        tags:['love','passion','deep','heart','romance']},
+  {name:'Chrysanthemum (White)', source:'B', meanings:['truth','loyal love','honesty','grief'],                                     tags:['truth','loyal','honest','grief','loss','sorrow','pure']},
+  {name:'Chrysanthemum (Yellow)',source:'B', meanings:['slighted love','neglected love','sorrow'],                                  tags:['slighted','neglect','sorrow','grief','rejected']},
+  {name:'Chrysanthemum (Purple)',source:'B', meanings:['I wish you well','get well soon'],                                          tags:['well','wish','health','heal','recovery','comfort']},
+  {name:'Aster',                 source:'B', meanings:['patience','wisdom','daintiness','a talisman of love'],                     tags:['patience','wisdom','love','talisman','protect','dainty']},
+  {name:'Marigold',              source:'B', meanings:['grief','jealousy','cruelty','despair','sacred love'],                       tags:['grief','sacred','loss','mourning','despair','death','sorrow']},
+  {name:'Zinnia',                source:'V', meanings:['thoughts of absent friends','lasting affection','constancy'],               tags:['absent','miss','friend','lasting','affection','remember','thinking']},
+  {name:'Cosmos',                source:'V', meanings:['order','tranquility','modesty','joy in simple things'],                     tags:['tranquil','peace','calm','joy','simple','modest','order']},
+  {name:'Heather (Purple)',      source:'F', meanings:['admiration','solitude','beauty'],                                           tags:['admire','solitude','beauty','alone','quiet']},
+  {name:'Heather (White)',       source:'F', meanings:['good luck','protection','wishes come true'],                                 tags:['luck','protect','wish','fortune','new','bless']},
+  {name:'Goldenrod',             source:'F', meanings:['encouragement','good fortune','treasure is near'],                          tags:['encourage','fortune','treasure','new','begin','hope','congratulations']},
+  {name:'Rudbeckia',             source:'F', meanings:['justice','impartiality','I am just'],                                       tags:['justice','fair','impartial','honest','truth']},
+  {name:'Helenium',              source:'V', meanings:['tears','a weeping heart'],                                                  tags:['tears','weep','grief','sorrow','loss','sad']},
+  {name:'Amaranth',              source:'F', meanings:['immortality','unfading love','eternal life'],                               tags:['immortal','unfading','love','eternal','lasting','forever']},
+  {name:'Globe Amaranth',        source:'V', meanings:['immortality','unfading love','unchangeable'],                               tags:['immortal','unfading','love','eternal','lasting']},
+  // FULL VICTORIAN DICTIONARY
+  {name:'Ranunculus',            source:'V', meanings:['radiance','charm','I am dazzled by you','attractiveness'],                  tags:['dazzled','charm','radiant','admire','beauty','love','enchant']},
+  {name:"Baby's Breath",         source:'V', meanings:['everlasting love','innocence','purity','trust'],                            tags:['everlasting','love','innocent','pure','trust','eternal']},
+  {name:'Wallflower',            source:'V', meanings:['fidelity in adversity','constancy','lasting beauty'],                       tags:['faithful','adversity','constant','lasting','strength','devoted']},
+  {name:'Nigella',               source:'V', meanings:['perplexity','you perplex me','a puzzle'],                                   tags:['puzzle','perplex','mystery','wonder','love']},
+  {name:'Love-in-a-Mist',        source:'V', meanings:['perplexity','delicate feelings','entanglement in love'],                    tags:['entangle','love','delicate','confused','mystery','wonder']},
+  {name:'Canterbury Bell',       source:'V', meanings:['acknowledgement','constancy','faith'],                                      tags:['faithful','constant','faith','acknowledge','trust']},
+  {name:'Columbine',             source:'F', meanings:['folly','ingratitude','deserted lover','resolution'],                        tags:['deserted','forsaken','resolve','lost','love','grief']},
+  {name:'Cyclamen',              source:'V', meanings:['resignation','diffidence','goodbye','I must leave thee'],                   tags:['goodbye','farewell','leave','depart','resignation','miss']},
+  {name:'Eglantine',             source:'V', meanings:['poetry','genius','I wound to heal','a tender heart'],                       tags:['tender','heart','poetry','heal','wound','love']},
+  {name:'Fuchsia',               source:'V', meanings:['humble love','confiding love','taste'],                                     tags:['humble','love','confide','trust','tender']},
+  {name:'Geranium (Red)',        source:'V', meanings:['comfort','I am comforted by you'],                                         tags:['comfort','consolation','care','soothed']},
+  {name:'Geranium (Pink)',       source:'V', meanings:['preference','I prefer you','doubt'],                                        tags:['prefer','choose','love','doubt']},
+  {name:'Geranium (White)',      source:'V', meanings:['I am your true friend'],                                                   tags:['friendship','friend','true','loyal','trust']},
+  {name:'Geranium (Scarlet)',    source:'V', meanings:['stupidity','folly'],                                                        tags:['folly','mistake','regret']},
+  {name:'Passionflower',         source:'F', meanings:['faith','religious superstition','susceptibility','piety'],                  tags:['faith','spiritual','piety','devotion','believe']},
+  {name:'Periwinkle',            source:'F', meanings:['tender recollections','early friendship','pleasures of memory'],            tags:['memory','remember','friendship','tender','early','past']},
+  {name:'Poppy (Red)',           source:'B', meanings:['consolation','sleep','imagination','extravagance'],                         tags:['consolation','comfort','grief','sleep','remember','loss']},
+  {name:'Poppy (White)',         source:'F', meanings:['sleep','eternal slumber','I sleep, I forget','oblivion'],                   tags:['sleep','forget','oblivion','rest','peace','grief','death']},
+  {name:'Poppy (Yellow)',        source:'F', meanings:['wealth','success','eternal riches'],                                        tags:['wealth','success','riches','fortune','new','achievement']},
+  {name:'Snapdragon',            source:'V', meanings:['presumption','no','deception','gracious lady'],                             tags:['no','refuse','deception','presumption','caution']},
+  {name:'Verbena',               source:'F', meanings:['pray for me','sensibility','pure love','I weep for thee'],                  tags:['pray','weep','grief','comfort','love','pure','sorrow']},
+  {name:'Water Lily',            source:'F', meanings:['purity of heart','eloquence','persuasion','peace'],                        tags:['peace','pure','eloquent','calm','serene','quiet']},
+  {name:'Weigela',               source:'V', meanings:['accept a faithful heart'],                                                  tags:['faithful','accept','heart','love','devoted']},
+  {name:'Acanthus',              source:'F', meanings:['the fine arts','artifice','admiration of the arts'],                        tags:['art','admire','fine','craft','culture','achievement']},
+  {name:'Agrimony',              source:'F', meanings:['thankfulness','gratitude','I thank you'],                                   tags:['thanks','gratitude','grateful','appreciate']},
+  {name:'Aloe',                  source:'F', meanings:['grief','religious superstition','bitterness'],                              tags:['grief','bitter','sorrow','religious','spiritual']},
+  {name:'Amaryllis',             source:'V', meanings:['splendid beauty','pride','you are dazzlingly beautiful'],                   tags:['beauty','pride','dazzle','splendid','admire','stunning']},
+  {name:'Angelica',              source:'F', meanings:['inspiration','magic','soaring thoughts'],                                   tags:['inspire','magic','soar','thought','spiritual','wonder']},
+  {name:'Arbutus',               source:'V', meanings:['you are the only one I love','thee only do I love'],                        tags:['love','only','devoted','exclusive','heart','romance']},
+  {name:'Azalea',                source:'V', meanings:['take care of yourself for me','temperance','fragile passion'],              tags:['care','temperance','fragile','passion','love','self']},
+  {name:'Balm',                  source:'V', meanings:['sympathy','comfort','chases away all melancholy'],                          tags:['sympathy','comfort','grief','heal','melancholy','sorrow']},
+  {name:'Balsam',                source:'V', meanings:['impatience','ardent love'],                                                 tags:['impatient','ardent','love','passion','eager','desire']},
+  {name:'Broom',                 source:'F', meanings:['humility','neatness','I humble myself before thee'],                        tags:['humble','neat','modest','bow']},
+  {name:'Catchfly',              source:'V', meanings:['pretended love','I fall into the snare','snare'],                           tags:['pretend','snare','false','deceit','trap']},
+  {name:'Clematis',              source:'V', meanings:['mental beauty','ingenuity','artifice'],                                     tags:['beauty','mind','clever','mental','intelligent','admire']},
+  {name:'Coltsfoot',             source:'F', meanings:['justice shall be done to you','maternal care','take courage'],              tags:['justice','courage','care','mother','maternal']},
+  {name:'Cupid\'s Dart',        source:'V', meanings:['publication','constancy'],                                                  tags:['constant','publish','lasting','faithful']},
+  {name:'Edelweiss',             source:'F', meanings:['noble courage','daring','dedication','precious memory'],                    tags:['courage','dare','noble','precious','memory','strength','bold']},
+  {name:'Everlasting Flower',    source:'V', meanings:['never-ceasing remembrance','always remembered'],                            tags:['remember','never','ceasing','lasting','always','memory']},
+  {name:'Gillyflower',           source:'V', meanings:['lasting beauty','bonds of affection'],                                      tags:['lasting','beauty','bond','affection','love']},
+  {name:'Gypsophila',            source:'V', meanings:['innocence','purity','gentle heart'],                                        tags:['innocent','pure','gentle','heart','tender']},
+  {name:'Harebell',              source:'F', meanings:['submission','grief','delicacy'],                                            tags:['submit','grief','delicate','sorrow','loss']},
+  {name:'Holly',                 source:'F', meanings:['domestic happiness','am I forgotten?','foresight'],                         tags:['happy','home','forget','foresight','family','remember']},
+  {name:'Honesty',               source:'V', meanings:['honesty','fascination','sincerity'],                                        tags:['honest','sincere','fascinate','truth','genuine']},
+  {name:'Ice Plant',             source:'V', meanings:['your looks freeze me','I feel frozen by you'],                              tags:['freeze','cold','distant','frozen','rejection']},
+  {name:'Ivy',                   source:'F', meanings:['fidelity','marriage','friendship','I cling to thee'],                       tags:['faithful','marriage','friendship','cling','devoted','lasting']},
+  {name:'Jacob\'s Ladder',       source:'V', meanings:['come down to me','ladder to heaven'],                                       tags:['come','heaven','ladder','spiritual','divine','hope']},
+  {name:'Juniper',               source:'F', meanings:['succour','protection'],                                                     tags:['protect','succour','shelter','care','safety']},
+  {name:'Laburnum',              source:'V', meanings:['pensive beauty','forsaken'],                                                tags:['forsaken','pensive','beauty','sorrow','lost']},
+  {name:'Lady\'s Slipper',       source:'V', meanings:['capricious beauty','win me and wear me'],                                  tags:['capricious','beauty','win','desire','charm']},
+  {name:'Lathyrus',              source:'V', meanings:['departure','I have a meeting','an appointment'],                            tags:['depart','meeting','farewell','appointment','leave']},
+  {name:'Laurustinus',           source:'V', meanings:['I die if neglected','token of remembrance'],                                tags:['neglect','remember','token','sorrow','miss']},
+  {name:'Love Lies Bleeding',    source:'V', meanings:['hopeless heart','desertion','hopeless love'],                               tags:['hopeless','desert','loss','grief','unrequited','sorrow']},
+  {name:'Lungwort',              source:'F', meanings:['thou art my life'],                                                         tags:['life','love','breath','devoted','you','mine']},
+  {name:'Marsh Marigold',        source:'F', meanings:['desire for riches','desire'],                                               tags:['desire','riches','want','wish','hope']},
+  {name:'Michaelmas Daisy',      source:'F', meanings:['farewell','afterthought','departure'],                                      tags:['farewell','goodbye','depart','after','leave']},
+  {name:'Mistletoe',             source:'F', meanings:['I surmount difficulties','kiss me'],                                        tags:['surmount','difficulties','kiss','overcome','strength']},
+  {name:'Monkshood',             source:'V', meanings:['beware','a deadly foe is near','chivalry'],                                 tags:['beware','danger','foe','caution','warning','chivalry']},
+  {name:'Morning Glory',         source:'V', meanings:['affectation','love in vain','departure of love'],                          tags:['vain','love','depart','affection','gone','lost']},
+  {name:'Narcissus',             source:'B', meanings:['egotism','self-love','formality','a poet\'s eye'],                         tags:['ego','self','formal','poet','vanity','narcissism']},
+  {name:'Nasturtium',            source:'V', meanings:['patriotism','conquest','impetuous love'],                                   tags:['patriot','conquest','impetuous','love','bold','country']},
+  {name:'Nettle',                source:'F', meanings:['cruelty','slander','you are cruel to me'],                                  tags:['cruel','slander','harsh','pain','sting']},
+  {name:'Night-Blooming Cereus', source:'V', meanings:['transient beauty','a night of love'],                                       tags:['transient','beauty','night','brief','love','fleeting']},
+  {name:'Oleander',              source:'V', meanings:['beware','caution'],                                                         tags:['beware','caution','danger','warning']},
+  {name:'Oxlip',                 source:'F', meanings:['you are my divinity','winning grace'],                                      tags:['divine','grace','love','devoted','worship']},
+  {name:'Pennyroyal',            source:'F', meanings:['you must flee','flee away'],                                                tags:['flee','escape','away','leave','danger']},
+  {name:'Peruvian Heliotrope',   source:'V', meanings:['devotion','I adore you'],                                                   tags:['devoted','adore','worship','love','eternal']},
+  {name:'Pheasant\'s Eye',       source:'V', meanings:['remembrance','I will remember you always'],                                 tags:['remember','always','memory','lasting','miss']},
+  {name:'Pimpernel',             source:'V', meanings:['change','I will change'],                                                   tags:['change','transform','new','different','alter']},
+  {name:'Pink (Double)',         source:'V', meanings:['pure and ardent love'],                                                     tags:['pure','ardent','love','passionate','heart']},
+  {name:'Pink (Single)',         source:'V', meanings:['pure love','you are always lovely'],                                        tags:['pure','love','always','lovely','admire']},
+  {name:'Polyanthus',            source:'V', meanings:['pride of riches','confidence'],                                             tags:['pride','riches','confident','wealth','strong']},
+  {name:'Restharrow',            source:'V', meanings:['obstacle'],                                                                 tags:['obstacle','block','hinder','stop']},
+  {name:'Rhododendron',          source:'V', meanings:['beware','danger','agitation'],                                              tags:['beware','danger','agitation','caution','warning']},
+  {name:'Sensitive Plant',       source:'V', meanings:['sensibility','sensitiveness','bashfulness'],                                tags:['sensitive','bashful','shy','delicate','tender']},
+  {name:'Shepherds Purse',       source:'V', meanings:['I offer you my all'],                                                      tags:['offer','all','everything','devoted','love','give']},
+  {name:'Smilax',                source:'V', meanings:['loveliness','I love thee'],                                                 tags:['lovely','love','thee','devoted','heart']},
+  {name:'Sorrel',                source:'V', meanings:['parental affection'],                                                       tags:['parent','affection','care','family','love']},
+  {name:'Southernwood',          source:'V', meanings:['jest','bantering','I joke with thee'],                                      tags:['jest','joke','banter','playful','fun']},
+  {name:'Strawberry Blossom',    source:'V', meanings:['perfect goodness','foresight'],                                             tags:['good','perfect','foresight','virtue','pure']},
+  {name:'Sundew',                source:'V', meanings:['assiduity','I think of thee in sleeping and waking'],                       tags:['think','sleeping','waking','devoted','miss','you']},
+  {name:'Sweet Basil',           source:'V', meanings:['good wishes'],                                                              tags:['good','wish','kind','warm','friendly']},
+  {name:'Sweet Briar',           source:'V', meanings:['I wound to heal','a tender heart','poesy'],                                 tags:['wound','heal','tender','heart','poetry','love']},
+  {name:'Sweet Sultan',          source:'V', meanings:['felicity','happiness','bliss'],                                             tags:['happy','felicity','bliss','joy','celebrate']},
+  {name:'Syringa',               source:'V', meanings:['memory','I will remember you','you always remember'],                       tags:['memory','remember','always','miss','lasting']},
+  {name:'Trefoil',               source:'F', meanings:['I promise','the trinity','I live for thee'],                                tags:['promise','live','devoted','thee','bond','love']},
+  {name:'Trumpet Flower',        source:'V', meanings:['fame','separation'],                                                        tags:['fame','separate','apart','distance','glory']},
+  {name:'Venus Flytrap',         source:'V', meanings:['have I caught you?','deceit'],                                              tags:['caught','deceit','trap','false','snare']},
+  {name:'Vervain',               source:'F', meanings:['enchantment','I pray for you'],                                             tags:['enchant','pray','spiritual','you','hope']},
+  {name:'Vetch',                 source:'V', meanings:['I cling to thee','attachment'],                                             tags:['cling','attach','devoted','love','bond']},
+  {name:'Viscaria',              source:'V', meanings:['will you dance with me?'],                                                  tags:['dance','will','you','invite','joy','play']},
+  {name:'Wheat',                 source:'F', meanings:['riches','prosperity','abundance'],                                          tags:['rich','prosperous','abundant','fortune','new','celebrate']},
+  {name:'Wormwood',              source:'F', meanings:['absence','I am always present in your absence'],                            tags:['absent','always','present','miss','thoughts','you']},
+  {name:'Zephyr Flower',         source:'V', meanings:['expectation','anticipation'],                                               tags:['expect','anticipate','hope','await','new','future']},
+  {name:'Passionflower',         source:'F', meanings:['faith','piety','susceptibility','religious devotion'],                      tags:['faith','piety','susceptible','spiritual','believe','devotion']},
+  {name:'Moonwort',              source:'F', meanings:['forgetfulness','silliness'],                                                tags:['forget','silly','forgetfulness']},
+  {name:'Traveller\'s Joy',      source:'V', meanings:['safety','I am safe','I arrive safely'],                                    tags:['safe','safety','arrive','well','protection']},
+  {name:'Straw',                 source:'V', meanings:['union','I unite you to me'],                                                tags:['unite','union','together','bond','joined']},
 ];
 
-// ─────────────────────────────────────────────
+// =============================================================================
 //  SENTIMENT TEMPLATES
-// ─────────────────────────────────────────────
+// =============================================================================
 const TEMPLATES = [
   {
     id:'love',
-    keywords:['love','passion','romantic','romance','heart','adore','devotion','desire','longing','deeply','beloved','darling','smitten','infatuat'],
-    names:['A Declaration of the Heart','Ardour & Devotion','Whispers of the Heart','A Tender Profession','The Language of Love'],
-    taglines:['for those who love deeply','where words fall short','a heart laid bare'],
+    keywords:['love','passion','romantic','romance','heart','adore','devotion','desire','longing','deeply','beloved','darling','smitten','infatuat','flame'],
+    names:['A Declaration of the Heart','Ardour & Devotion','Whispers of the Heart','A Tender Profession','The Language of Love','Love\'s Own Garland','A Burning Confession'],
+    taglines:['for those who love deeply','where words fall short','a heart laid bare','love made visible'],
     slots:[
-      {tags:['passion','romance','love'],           label:'passion'},
+      {tags:['passion','romance','love'],              label:'passion'},
       {tags:['devotion','devoted','eternal','lasting'],label:'devotion'},
-      {tags:['longing','miss','ache','adore'],      label:'longing'},
-      {tags:['pure','innocent','tender'],           label:'tenderness'},
+      {tags:['longing','miss','ache','adore'],         label:'longing'},
+      {tags:['pure','innocent','tender'],              label:'tenderness'},
+      {tags:['heart','romance','declare'],             label:'declaration'},
     ],
     note:'Bind loosely with crimson ribbon and present at dusk, when the flowers carry their fullest fragrance. Hold the arrangement at heart height — the Victorians believed this transmitted the sender\'s feeling directly.'
   },
   {
     id:'grief',
-    keywords:['grief','griev','mourn','loss','lost','died','death','dead','sorrow','condol','bereavement','passing','departed','gone'],
-    names:['A Tender Farewell','In Memoriam','Consolations of the Garden','A Wreath of Remembrance','Words Left Unspoken'],
-    taglines:['with deepest sympathy','in remembrance and love','for what cannot be said'],
+    keywords:['grief','griev','mourn','loss','lost','died','death','dead','sorrow','condol','bereavement','passing','departed','gone','widow','funeral'],
+    names:['A Tender Farewell','In Memoriam','Consolations of the Garden','A Wreath of Remembrance','Words Left Unspoken','The Silent Tribute'],
+    taglines:['with deepest sympathy','in remembrance and love','for what cannot be said','carried quietly'],
     slots:[
-      {tags:['grief','mourning','sorrow','loss'],   label:'grief'},
-      {tags:['remember','memory','miss','forget'],  label:'remembrance'},
-      {tags:['comfort','consolation','sympathy'],   label:'comfort'},
-      {tags:['hope','peace','eternal','pure'],      label:'hope'},
+      {tags:['grief','mourning','sorrow','loss'],      label:'grief'},
+      {tags:['remember','memory','miss','forget'],     label:'remembrance'},
+      {tags:['comfort','consolation','sympathy'],      label:'comfort'},
+      {tags:['hope','peace','eternal','pure'],         label:'hope'},
+      {tags:['faithful','constant','devoted'],         label:'faithfulness'},
     ],
     note:'Arrange in white and deep tones, wrapped in soft grey paper. Leave the arrangement without a card — the flowers speak the words that cannot be uttered.'
   },
   {
     id:'gratitude',
-    keywords:['gratitude','grateful','thankful','thanks','appreciate','appreciation','kindness','generous','helped','support'],
-    names:['A Garland of Thanks','With Sincere Gratitude','A Bouquet of Good Feeling','The Gift of Thankfulness','Warmth Returned'],
-    taglines:['in genuine appreciation','for your great kindness','a heartfelt offering'],
+    keywords:['gratitude','grateful','thankful','thanks','appreciate','appreciation','kindness','generous','helped','support','obliged'],
+    names:['A Garland of Thanks','With Sincere Gratitude','A Bouquet of Good Feeling','The Gift of Thankfulness','Warmth Returned','A Generous Tribute'],
+    taglines:['in genuine appreciation','for your great kindness','a heartfelt offering','gratitude in bloom'],
     slots:[
-      {tags:['gratitude','appreciate','thanks'],    label:'gratitude'},
-      {tags:['warm','warmth','friendship','friend'],label:'warmth'},
-      {tags:['admire','admiration','respect'],      label:'admiration'},
-      {tags:['lasting','bond','affection'],         label:'affection'},
+      {tags:['gratitude','appreciate','thanks'],       label:'gratitude'},
+      {tags:['warm','warmth','friendship','friend'],   label:'warmth'},
+      {tags:['admire','admiration','respect'],         label:'admiration'},
+      {tags:['lasting','bond','affection'],            label:'affection'},
+      {tags:['sincere','honest','true'],               label:'sincerity'},
     ],
     note:'Arrange in a wide, generous bunch — gratitude should never appear stinted. Pair with a small handwritten note tucked among the stems.'
   },
   {
     id:'apology',
-    keywords:['sorry','apolog','forgive','forgiveness','regret','remorse','mistake','fault','wrong','hurt','repair','mend','reconcile'],
-    names:['A Plea for Forgiveness','Contrition in Bloom','The Penitent\'s Posy','A Sincere Regret','Seeking Absolution'],
-    taglines:['with sincere remorse','humbly offered','asking only for peace'],
+    keywords:['sorry','apolog','forgive','forgiveness','regret','remorse','mistake','fault','wrong','hurt','repair','mend','reconcile','ashamed','guilt'],
+    names:['A Plea for Forgiveness','Contrition in Bloom','The Penitent\'s Posy','A Sincere Regret','Seeking Absolution','Humbly Tendered'],
+    taglines:['with sincere remorse','humbly offered','asking only for peace','a contrite offering'],
     slots:[
-      {tags:['apology','sorry','forgiveness'],      label:'apology'},
-      {tags:['sincere','pure','innocent','humble'], label:'sincerity'},
-      {tags:['healing','comfort','compassion'],     label:'healing'},
-      {tags:['hope','new','begin','fresh'],         label:'hope'},
+      {tags:['apology','sorry','forgiveness'],         label:'apology'},
+      {tags:['sincere','pure','innocent','humble'],    label:'sincerity'},
+      {tags:['healing','comfort','compassion'],        label:'healing'},
+      {tags:['hope','new','begin','fresh'],            label:'hope'},
+      {tags:['reconcile','peace','trust'],             label:'reconciliation'},
     ],
     note:'Present the arrangement quietly, without ceremony. White and pale tones signal sincerity; avoid red, which speaks of passion rather than contrition.'
   },
   {
     id:'friendship',
-    keywords:['friend','friendship','companion','bond','trust','loyal','buddy','mate','platonic','together','support'],
-    names:['A Posy of True Friendship','Companions in Bloom','The Bond Between Us','An Offering of Good Faith','Steadfast & True'],
-    taglines:['for a cherished companion','a tribute to loyalty','flowers for a true friend'],
+    keywords:['friend','friendship','companion','bond','trust','loyal','buddy','mate','platonic','together','support','camaraderie'],
+    names:['A Posy of True Friendship','Companions in Bloom','The Bond Between Us','An Offering of Good Faith','Steadfast & True','A Loyal Tribute'],
+    taglines:['for a cherished companion','a tribute to loyalty','flowers for a true friend','steadfast as ever'],
     slots:[
-      {tags:['friendship','friend','platonic'],     label:'friendship'},
-      {tags:['loyal','faithful','trust','constant'],label:'loyalty'},
-      {tags:['warm','cheer','joy','happiness'],     label:'joy'},
-      {tags:['lasting','bond'],                     label:'lasting bond'},
+      {tags:['friendship','friend','platonic'],        label:'friendship'},
+      {tags:['loyal','faithful','trust','constant'],   label:'loyalty'},
+      {tags:['warm','cheer','joy','happiness'],        label:'joy'},
+      {tags:['lasting','bond','affection'],            label:'lasting bond'},
+      {tags:['honest','true','genuine'],               label:'honesty'},
     ],
     note:'Choose a relaxed, wildflower-style arrangement rather than a formal bouquet — friendship is informal and warm. Wrap in brown paper tied with twine.'
   },
   {
     id:'new_beginning',
-    keywords:['new','begin','beginning','fresh','start','rebirth','renewal','change','chapter','journey','hope','future','congratul'],
-    names:['A Garland of Fresh Beginnings','The First Morning','Blossoms at the Threshold','A Hopeful Offering','Into New Light'],
-    taglines:['for a brave new chapter','on the cusp of something fine','hope dressed in petals'],
+    keywords:['new','begin','beginning','fresh','start','rebirth','renewal','change','chapter','journey','hope','future','congratul','launch','opening'],
+    names:['A Garland of Fresh Beginnings','The First Morning','Blossoms at the Threshold','A Hopeful Offering','Into New Light','Spring\'s Own Promise'],
+    taglines:['for a brave new chapter','on the cusp of something fine','hope dressed in petals','the world begins again'],
     slots:[
       {tags:['new','beginning','begin','fresh','start'],label:'new start'},
-      {tags:['hope','rebirth','renewal','spring'],  label:'hope'},
-      {tags:['courage','strength','bold'],          label:'courage'},
-      {tags:['joy','celebrate','happiness'],        label:'joy'},
+      {tags:['hope','rebirth','renewal','spring'],     label:'hope'},
+      {tags:['courage','strength','bold'],             label:'courage'},
+      {tags:['joy','celebrate','happiness'],           label:'joy'},
+      {tags:['luck','fortune','bless'],                label:'good fortune'},
     ],
     note:'Use spring blooms and pale greens where possible — nature\'s own emblem of renewal. Present at the threshold of the new home, endeavour, or occasion.'
   },
   {
     id:'missing',
-    keywords:['miss','missing','absent','away','far','distance','apart','wish','here','gone','longing','yearn'],
-    names:['A Posy of Longing','Thoughts Across the Distance','The Absent One','A Bouquet of Remembrance','I Wish You Were Here'],
-    taglines:['for the one who is missed','distance cannot dim affection','a heart in two places'],
+    keywords:['miss','missing','absent','away','far','distance','apart','wish','here','gone','longing','yearn','separated','afar'],
+    names:['A Posy of Longing','Thoughts Across the Distance','The Absent One','A Bouquet of Remembrance','I Wish You Were Here','Sent Across the Miles'],
+    taglines:['for the one who is missed','distance cannot dim affection','a heart in two places','ever in my thoughts'],
     slots:[
-      {tags:['miss','absent','longing','thinking'], label:'longing'},
-      {tags:['remember','memory','forget'],         label:'remembrance'},
-      {tags:['devoted','faithful','constant'],      label:'constancy'},
-      {tags:['love','affection','tender'],          label:'affection'},
+      {tags:['miss','absent','longing','thinking'],    label:'longing'},
+      {tags:['remember','memory','forget'],            label:'remembrance'},
+      {tags:['devoted','faithful','constant'],         label:'constancy'},
+      {tags:['love','affection','tender'],             label:'affection'},
+      {tags:['hope','wish','dream'],                   label:'hope'},
     ],
     note:'Dry one flower from the arrangement and press it into a letter — the Victorians called this a "flower-letter," a token that could travel where the sender could not.'
   },
   {
     id:'celebration',
-    keywords:['celebrat','congratul','wedding','marriage','birth','birthday','achievement','success','win','victory','joy','happy','cheer','festiv'],
-    names:['A Joyful Garland','Flowers of Felicitation','A Celebration in Bloom','Joy Unconfined','The Festive Posy'],
-    taglines:['in joyful celebration','for a moment of triumph','happiness in full flower'],
+    keywords:['celebrat','congratul','wedding','marriage','birth','birthday','achievement','success','win','victory','joy','happy','cheer','festiv','anniversary','milestone'],
+    names:['A Joyful Garland','Flowers of Felicitation','A Celebration in Bloom','Joy Unconfined','The Festive Posy','In Full and Happy Bloom'],
+    taglines:['in joyful celebration','for a moment of triumph','happiness in full flower','raise high the blooms'],
     slots:[
-      {tags:['celebrate','joy','happy','happiness'],label:'celebration'},
+      {tags:['celebrate','joy','happy','happiness'],   label:'celebration'},
       {tags:['victory','glory','achievement','congratulations'],label:'achievement'},
-      {tags:['love','affection','warm'],            label:'warmth'},
-      {tags:['luck','fortune','new'],               label:'good fortune'},
+      {tags:['love','affection','warm'],               label:'warmth'},
+      {tags:['luck','fortune','new'],                  label:'good fortune'},
+      {tags:['lasting','eternal','bond'],              label:'lasting happiness'},
     ],
     note:'Abundance is the key — pile the arrangement high and let it overflow its vessel. Victorians believed a generous bouquet amplified the joy of the occasion.'
   },
   {
     id:'admiration',
-    keywords:['admire','admiration','beauty','beautiful','lovely','enchant','captivat','dazzl','bewitched','charm','stunning','fascinate'],
-    names:['An Admirer\'s Tribute','Flowers for the Enchanted','A Dazzled Heart','In Your Honour','The Spell of Beauty'],
-    taglines:['an offering of pure admiration','beauty answered with beauty','for the one who dazzles'],
+    keywords:['admire','admiration','beauty','beautiful','lovely','enchant','captivat','dazzl','bewitched','charm','stunning','fascinate','gorgeous','exquisite'],
+    names:['An Admirer\'s Tribute','Flowers for the Enchanted','A Dazzled Heart','In Your Honour','The Spell of Beauty','Beauty\'s Own Garland'],
+    taglines:['an offering of pure admiration','beauty answered with beauty','for the one who dazzles','you have bewitched me'],
     slots:[
       {tags:['admire','admiration','beauty','enchant'],label:'admiration'},
       {tags:['dazzled','charm','captivate','fascinate'],label:'enchantment'},
-      {tags:['love','adore','worship'],             label:'devotion'},
-      {tags:['rare','special','luxury'],            label:'distinction'},
+      {tags:['love','adore','worship'],                label:'devotion'},
+      {tags:['rare','special','luxury'],               label:'distinction'},
+      {tags:['lovely','adorable','perfect'],           label:'loveliness'},
     ],
     note:'Present the arrangement with a formal bow — Victorian admirers delivered flowers with great ceremony. A single perfect bloom tucked at the centre signalled especial regard.'
   },
   {
     id:'comfort',
-    keywords:['comfort','console','consolat','support','care','ill','sick','recovery','difficult','hard','pain','hurt','struggling','suffer'],
-    names:['A Comforting Posy','Flowers of Solace','A Gentle Offering','Balm for the Weary','With Tenderest Care'],
-    taglines:['for the weary and heavy-hearted','a small comfort in petals','you are not alone'],
+    keywords:['comfort','console','consolat','support','care','ill','sick','recovery','difficult','hard','pain','hurt','struggling','suffer','unwell','tired','weary'],
+    names:['A Comforting Posy','Flowers of Solace','A Gentle Offering','Balm for the Weary','With Tenderest Care','A Quiet Kindness'],
+    taglines:['for the weary and heavy-hearted','a small comfort in petals','you are not alone','gently offered'],
     slots:[
       {tags:['comfort','consolation','compassion','care'],label:'comfort'},
-      {tags:['healing','heal','strength'],          label:'healing'},
-      {tags:['hope','peace','calm','serene'],       label:'peace'},
-      {tags:['pure','innocent','tender'],           label:'tenderness'},
+      {tags:['healing','heal','strength'],             label:'healing'},
+      {tags:['hope','peace','calm','serene'],          label:'peace'},
+      {tags:['pure','innocent','tender'],              label:'tenderness'},
+      {tags:['warm','gentle','kind'],                  label:'kindness'},
     ],
     note:'Choose soft, yielding flowers over stiff formal ones. Place near the bedside or windowsill rather than presenting with ceremony — comfort is quiet work.'
   },
+  {
+    id:'secret_admirer',
+    keywords:['secret','anonymous','hidden','crush','dare not','admire from afar','from a secret','unknown','admirer','quietly','shy'],
+    names:['A Hidden Heart','From an Unnamed Admirer','A Secret Tribute','Flowers Without a Name','Sent Without Signature'],
+    taglines:['sent in silence','from an unnamed heart','a mystery in petals','unsigned and sincere'],
+    slots:[
+      {tags:['secret','hidden','admire'],              label:'secret admiration'},
+      {tags:['love','devoted','adore'],                label:'devotion'},
+      {tags:['enchant','dazzled','charm'],             label:'enchantment'},
+      {tags:['hope','wish','dream'],                   label:'hope'},
+    ],
+    note:'Send without a card, as the Victorians frequently did, allowing the flowers themselves to carry the full weight of feeling. The recipient consults her floral dictionary.'
+  },
+  {
+    id:'farewell',
+    keywords:['farewell','goodbye','parting','leaving','departure','going away','last','final','adieu','bon voyage','moving'],
+    names:['A Parting Posy','The Last Offering','Adieu in Bloom','A Fond Farewell','The Departing Garland'],
+    taglines:['until we meet again','a fond parting gift','carried away with love','one last bloom'],
+    slots:[
+      {tags:['farewell','goodbye','depart','leave'],   label:'farewell'},
+      {tags:['remember','memory','miss'],              label:'remembrance'},
+      {tags:['devoted','faithful','lasting'],          label:'constancy'},
+      {tags:['love','affection','tender'],             label:'affection'},
+    ],
+    note:'Tie with a ribbon in the recipient\'s favourite colour. Victorians believed parting gifts of flowers carried the giver\'s protection on the journey ahead.'
+  },
 ];
 
-// ─────────────────────────────────────────────
+// =============================================================================
 //  MATCHING ENGINE
-// ─────────────────────────────────────────────
-
-function pickOne(arr) {
-  return arr[Math.floor(Math.random() * arr.length)];
-}
+// =============================================================================
+function pickOne(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 
 function scoreFlower(flower, desiredTags) {
   let score = 0;
   for (const dt of desiredTags) {
     for (const ft of flower.tags) {
-      if (ft.includes(dt) || dt.includes(ft)) score += 2;
+      if (ft === dt) score += 3;
+      else if (ft.includes(dt) || dt.includes(ft)) score += 1;
     }
     for (const m of flower.meanings) {
       if (m.toLowerCase().includes(dt)) score += 1;
@@ -729,9 +638,8 @@ function pickFlowersForSlots(slots, usedNames) {
       .map(f => ({ flower: f, score: scoreFlower(f, slot.tags) }))
       .filter(x => x.score > 0)
       .sort((a, b) => b.score - a.score);
-
     if (candidates.length > 0) {
-      const top = candidates.slice(0, 3);
+      const top = candidates.slice(0, Math.min(5, candidates.length));
       const choice = top[Math.floor(Math.random() * top.length)].flower;
       picked.push({ flower: choice, slot });
     }
@@ -743,31 +651,31 @@ function detectTemplates(input) {
   const lower = input.toLowerCase();
   const scores = TEMPLATES.map(t => ({
     template: t,
-    score: t.keywords.reduce((s, kw) => s + (lower.includes(kw) ? 1 : 0), 0)
+    score: t.keywords.reduce((s, kw) => s + (lower.includes(kw) ? 2 : 0), 0)
   }));
   scores.sort((a, b) => b.score - a.score);
-  // Ensure top 3 are distinct; if scores are all 0 use first 3 templates as fallback
-  return scores.slice(0, 3).map(s => s.template);
+  const top3 = scores.slice(0, 3).map(s => s.template);
+  const remaining = TEMPLATES.filter(t => !top3.includes(t));
+  while (top3.length < 3 && remaining.length > 0) {
+    top3.push(remaining.splice(Math.floor(Math.random() * remaining.length), 1)[0]);
+  }
+  return top3;
 }
 
 function buildArrangement(template, usedNames) {
   const picked = pickFlowersForSlots(template.slots, usedNames);
   picked.forEach(p => usedNames.add(p.flower.name));
-
   const reasonPhrases = [
-    (f, label) => `Its Victorian meaning of "${f.meanings[0]}" lends a note of ${label} to the arrangement.`,
-    (f, label) => `In the language of flowers, the ${f.name} speaks of ${f.meanings[0]} — the essence of ${label}.`,
+    (f, label) => `Its ${f.source === 'F' ? 'folkloric' : 'Victorian'} meaning of "${f.meanings[0]}" lends a note of ${label} to the arrangement.`,
+    (f, label) => `In the language of flowers, the ${f.name} speaks of ${f.meanings[0]} — the very spirit of ${label}.`,
     (f, label) => `Chosen for its meaning of ${f.meanings[0]}, it gives voice to ${label} within the bouquet.`,
-    (f, label) => `Tradition holds the ${f.name} to signify ${f.meanings[0]}, anchoring the spirit of ${label}.`,
+    (f, label) => `Tradition holds the ${f.name} to signify ${f.meanings[0]}, anchoring the note of ${label}.`,
+    (f, label) => `The ${f.name}, signifying ${f.meanings[0]}, weaves ${label} through the heart of the arrangement.`,
   ];
-
   return {
     name: pickOne(template.names),
     tagline: pickOne(template.taglines),
-    flowers: picked.map(p => ({
-      name: p.flower.name,
-      meaning: pickOne(reasonPhrases)(p.flower, p.slot.label)
-    })),
+    flowers: picked.map(p => ({ name: p.flower.name, meaning: pickOne(reasonPhrases)(p.flower, p.slot.label) })),
     note: template.note
   };
 }
@@ -775,16 +683,16 @@ function buildArrangement(template, usedNames) {
 function compose() {
   const msg = document.getElementById('msg').value.trim();
   if (!msg) { document.getElementById('msg').focus(); return; }
-
   const templates = detectTemplates(msg);
   const usedNames = new Set();
   const arrangements = templates.map(t => buildArrangement(t, usedNames));
   renderArrangements(arrangements);
+  setTimeout(() => document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
 }
 
-// ─────────────────────────────────────────────
+// =============================================================================
 //  GLOSSARY
-// ─────────────────────────────────────────────
+// =============================================================================
 let activeFilter = 'all';
 
 function renderGlossary() {
@@ -810,17 +718,12 @@ function setFilter(v, btn) {
   btn.classList.add('active');
   renderGlossary();
 }
-
 function filterGlossary() { renderGlossary(); }
+function fill(text) { document.getElementById('msg').value = text; document.getElementById('msg').focus(); }
 
-function fill(text) {
-  document.getElementById('msg').value = text;
-  document.getElementById('msg').focus();
-}
-
-// ─────────────────────────────────────────────
+// =============================================================================
 //  RENDER
-// ─────────────────────────────────────────────
+// =============================================================================
 function renderArrangements(arr) {
   if (!arr?.length) {
     document.getElementById('results').innerHTML = `<div class="error-msg">No arrangement could be composed. Please describe your sentiment in more detail.</div>`;
@@ -831,31 +734,21 @@ function renderArrangements(arr) {
     ${arr.map((a, i) => `
       <article class="arrangement" style="animation-delay:${i * 0.12}s">
         <div class="arr-header">
-          <div>
-            <div class="arr-name">${esc(a.name)}</div>
-            <div class="arr-tagline">${esc(a.tagline)}</div>
-          </div>
+          <div><div class="arr-name">${esc(a.name)}</div><div class="arr-tagline">${esc(a.tagline)}</div></div>
           ${i === 0 ? '<span class="best-badge">Best match</span>' : ''}
         </div>
         <div class="arr-body">
           <p class="section-micro">Flowers &amp; their meanings</p>
           <div class="flowers-grid">
-            ${a.flowers.map(f => `
-              <div class="flower-pill">
-                <div class="flower-pill-name">${esc(f.name)}</div>
-                <div class="flower-pill-meaning">${esc(f.meaning)}</div>
-              </div>`).join('')}
+            ${a.flowers.map(f => `<div class="flower-pill"><div class="flower-pill-name">${esc(f.name)}</div><div class="flower-pill-meaning">${esc(f.meaning)}</div></div>`).join('')}
           </div>
           <p class="arr-note">${esc(a.note)}</p>
         </div>
-      </article>
-    `).join('')}`;
+      </article>`).join('')}`;
 }
 
 function esc(str) {
-  return String(str)
-    .replace(/&/g, '&amp;').replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
 document.addEventListener('DOMContentLoaded', () => {
