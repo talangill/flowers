@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Language of Flowers · Floriography</title>
+  <meta name="description" content="A Victorian floriography guide — describe your sentiment and receive a curated floral arrangement." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #faf6f0;
+      --warm-white: #fdf9f4;
+      --parchment: #f0e8d8;
+      --ink: #2a1f14;
+      --ink-light: #5c4a38;
+      --ink-muted: #8c7a68;
+      --ink-faint: #b8a898;
+      --blush: #d4896a;
+      --blush-light: #f0c4b0;
+      --sage: #7a9e8a;
+      --sage-light: #c4d8cc;
+      --border: rgba(42,31,20,0.12);
+      --border-light: rgba(42,31,20,0.07);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--cream);
+      color: var(--ink);
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── Grain overlay ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    /* ── Layout ── */
+    .page { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; padding: 0 2rem 5rem; }
+
+    /* ── Hero ── */
+    .hero {
+      text-align: center;
+      padding: 5rem 0 3rem;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '❧';
+      display: block;
+      font-size: 1.6rem;
+      color: var(--blush);
+      margin-bottom: 1.5rem;
+      opacity: 0.7;
+      animation: fadeIn 1s ease both;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 6vw, 3.6rem);
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.15;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      animation: fadeUp 0.9s ease both 0.1s;
+    }
+
+    .hero-sub {
+      margin-top: 0.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--ink-muted);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      animation: fadeUp 0.9s ease both 0.2s;
+    }
+
+    .ornament {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 1.8rem auto;
+      max-width: 280px;
+      animation: fadeIn 1s ease both 0.3s;
+    }
+
+    .ornament-line {
+      flex: 1;
+      height: 0.5px;
+      background: linear-gradient(to right, transparent, var(--ink-faint), transparent);
+    }
+
+    .ornament-glyph {
+      font-size: 0.9rem;
+      color: var(--ink-faint);
+    }
+
+    .hero p {
+      font-size: 1rem;
+      color: var(--ink-light);
+      line-height: 1.8;
+      max-width: 480px;
+      margin: 0 auto;
+      font-weight: 300;
+      animation: fadeUp 0.9s ease both 0.35s;
+    }
+
+    /* ── Input card ── */
+    .input-card {
+      background: var(--warm-white);
+      border: 0.5px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.9s ease both 0.45s;
+    }
+
+    .input-label {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 0.7rem;
+      font-weight: 400;
+    }
+
+    textarea {
+      width: 100%;
+      background: var(--cream);
+      border: 0.5px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--ink);
+      resize: none;
+      height: 100px;
+      line-height: 1.7;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    textarea:focus { border-color: var(--blush); }
+    textarea::placeholder { color: var(--ink-faint); }
+
+    .suggestions-label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin: 1.2rem 0 0.6rem;
+      display: block;
+    }
+
+    .suggestions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 1.4rem;
+    }
+
+    .suggestion-btn {
+      font-size: 12px;
+      padding: 5px 14px;
+      border-radius: 99px;
+      border: 0.5px solid var(--border);
+      background: transparent;
+      color: var(--ink-light);
+      cursor: pointer;
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      transition: all 0.18s;
+      letter-spacing: 0.02em;
+    }
+
+    .suggestion-btn:hover {
+      background: var(--parchment);
+      border-color: var(--ink-faint);
+      color: var(--ink);
+    }
+
+    .compose-btn {
+      width: 100%;
+      padding: 0.85rem;
+      background: var(--ink);
+      color: var(--cream);
+      border: none;
+      border-radius: 10px;
+      font-family: 'Lato', sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s;
+      font-weight: 400;
+    }
+
+    .compose-btn:hover { opacity: 0.88; }
+    .compose-btn:active { transform: scale(0.99); }
+    .compose-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+
+    /* ── Results ── */
+    #results { margin-bottom: 3rem; }
+
+    .results-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.8rem;
+      font-style: italic;
+      letter-spacing: 0.14em;
+      color: var(--ink-faint);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 3rem 0;
+      color: var(--ink-muted);
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+    }
+
+    .loading-dots span {
+      animation: blink 1.4s infinite;
+      opacity: 0;
+    }
+    .loading-dots span:nth-child(2) { animation-delay: 0.46s; }
+    .loading-dots span:nth-child(3) { animation-delay: 0.92s; }
+
+    @keyframes blink { 50% { opacity: 1; } }
+
+    .arrangement {
+      background: var(--warm-white);
+      border: 0.5px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 1.2rem;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .arrangement:nth-child(2) { animation-delay: 0.1s; }
+    .arrangement:nth-child(3) { animation-delay: 0.2s; }
+
+    .arr-header {
+      padding: 1.3rem 1.6rem;
+      border-bottom: 0.5px solid var(--border-light);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .arr-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1.2;
+    }
+
+    .arr-tagline {
+      font-size: 11px;
+      color: var(--ink-muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+
+    .best-badge {
+      flex-shrink: 0;
+      font-size: 10px;
+      padding: 3px 10px;
+      border-radius: 99px;
+      background: #f0ebe0;
+      color: var(--blush);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 0.5px solid var(--blush-light);
+      margin-top: 4px;
+    }
+
+    .arr-body { padding: 1.3rem 1.6rem; }
+
+    .section-micro {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 0.7rem;
+    }
+
+    .flowers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 8px;
+      margin-bottom: 1.2rem;
+    }
+
+    .flower-pill {
+      background: var(--cream);
+      border: 0.5px solid var(--border-light);
+      border-radius: 10px;
+      padding: 0.65rem 0.9rem;
+    }
+
+    .flower-pill-name {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 2px;
+    }
+
+    .flower-pill-meaning {
+      font-size: 11.5px;
+      color: var(--ink-muted);
+      font-style: italic;
+      font-family: 'Cormorant Garamond', serif;
+      line-height: 1.4;
+    }
+
+    .arr-note {
+      font-size: 13.5px;
+      color: var(--ink-light);
+      line-height: 1.75;
+      font-weight: 300;
+      border-top: 0.5px solid var(--border-light);
+      padding-top: 1rem;
+    }
+
+    .error { text-align: center; padding: 2rem; color: #a0533a; font-size: 14px; }
+
+    /* ── Glossary ── */
+    .glossary {
+      border-top: 0.5px solid var(--border);
+      padding-top: 2.5rem;
+      animation: fadeUp 0.9s ease both 0.6s;
+    }
+
+    .glossary-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .glossary-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--ink);
+    }
+
+    .glossary-sub {
+      font-size: 11px;
+      color: var(--ink-faint);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .glossary-search {
+      width: 100%;
+      background: var(--warm-white);
+      border: 0.5px solid var(--border);
+      border-radius: 8px;
+      padding: 0.6rem 1rem;
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+      color: var(--ink);
+      font-weight: 300;
+      outline: none;
+      margin-bottom: 1rem;
+      transition: border-color 0.2s;
+    }
+    .glossary-search:focus { border-color: var(--blush); }
+    .glossary-search::placeholder { color: var(--ink-faint); }
+
+    .glossary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+      gap: 6px;
+    }
+
+    .g-item {
+      padding: 0.55rem 0.8rem;
+      border: 0.5px solid var(--border-light);
+      border-radius: 8px;
+      background: var(--warm-white);
+      transition: border-color 0.15s;
+    }
+
+    .g-item:hover { border-color: var(--ink-faint); }
+
+    .g-name { font-size: 13px; font-weight: 400; color: var(--ink); }
+    .g-meaning {
+      font-size: 11.5px;
+      color: var(--ink-muted);
+      font-style: italic;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 3rem 0 1rem;
+      font-size: 11px;
+      color: var(--ink-faint);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      animation: fadeIn 1s ease both 0.8s;
+    }
+
+    footer span { color: var(--blush); }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 520px) {
+      .page { padding: 0 1.2rem 4rem; }
+      .hero { padding: 3rem 0 2rem; }
+      .input-card, .arr-body, .arr-header { padding: 1.2rem; }
+      .flowers-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- Hero -->
+  <header class="hero">
+    <h1>The Language of Flowers</h1>
+    <p class="hero-sub">Floriography &middot; A Victorian Art</p>
+    <div class="ornament">
+      <div class="ornament-line"></div>
+      <div class="ornament-glyph">✦</div>
+      <div class="ornament-line"></div>
+    </div>
+    <p>Describe what you wish to say — a feeling, an occasion, a sentiment — and receive a curated arrangement that speaks without words.</p>
+  </header>
+
+  <!-- Input -->
+  <div class="input-card">
+    <label class="input-label" for="msg">Your message or sentiment</label>
+    <textarea id="msg" placeholder="e.g. I want to tell someone I'm sorry and still deeply in love with them…" rows="4"></textarea>
+
+    <span class="suggestions-label">Quick sentiments</span>
+    <div class="suggestions">
+      <button class="suggestion-btn" onclick="fill('I want to express deep gratitude to a close friend')">Gratitude to a friend</button>
+      <button class="suggestion-btn" onclick="fill('I am grieving and want to offer comfort')">Sympathy &amp; comfort</button>
+      <button class="suggestion-btn" onclick="fill('I am hopelessly, passionately in love')">Passionate love</button>
+      <button class="suggestion-btn" onclick="fill('I want to apologise sincerely and ask for forgiveness')">Sincere apology</button>
+      <button class="suggestion-btn" onclick="fill('Congratulations on a new beginning or fresh start')">New beginning</button>
+      <button class="suggestion-btn" onclick="fill('I miss someone dearly and wish they were here')">I miss you</button>
+    </div>
+
+    <button class="compose-btn" id="compose-btn" onclick="compose()">Compose My Arrangement</button>
+  </div>
+
+  <!-- Results -->
+  <div id="results"></div>
+
+  <!-- Glossary -->
+  <section class="glossary">
+    <div class="glossary-header">
+      <h2 class="glossary-title">A Floral Dictionary</h2>
+      <span class="glossary-sub">110 flowers</span>
+    </div>
+    <div class="glossary-filters">
+      <button class="gf-btn active" onclick="setFilter('all',this)">All</button>
+      <button class="gf-btn" onclick="setFilter('V',this)">Victorian</button>
+      <button class="gf-btn" onclick="setFilter('F',this)">Folklore</button>
+    </div>
+    <input class="glossary-search" type="text" id="g-search" placeholder="Search flowers or meanings…" oninput="filterGlossary()" />
+    <div class="glossary-grid" id="glossary"></div>
+  </section>
+
+  <footer>
+    <p>Made with <span>❧</span> · Powered by Claude · Floriography since 1820</p>
+  </footer>
+
+</div>
+
+<script>
+  const ANTHROPIC_API_KEY = 'YOUR_API_KEY_HERE'; // Replace with your key or use a backend proxy
+
+  // source: V = Victorian floriography, F = folklore & mythology, B = both
+  const FLOWERS = [
+    // ── Roses ──
+    {name:'Red Rose',          source:'V', meanings:['passionate love','desire','romance','I love you']},
+    {name:'White Rose',        source:'V', meanings:['purity','innocence','sympathy','new beginnings','reverence']},
+    {name:'Pink Rose',         source:'V', meanings:['admiration','gratitude','gentle affection','appreciation']},
+    {name:'Yellow Rose',       source:'V', meanings:['friendship','joy','warmth','platonic love']},
+    {name:'Orange Rose',       source:'V', meanings:['enthusiasm','desire','fascination','passionate romance']},
+    {name:'Coral Rose',        source:'V', meanings:['desire','modesty','friendship blossoming into love']},
+    {name:'Lavender Rose',     source:'V', meanings:['enchantment','love at first sight','mystery','wonder']},
+    {name:'Dark Crimson Rose', source:'V', meanings:['mourning','deep grief','unconscious beauty']},
+    {name:'Moss Rose',         source:'V', meanings:['confessions of love','voluptuous love','pleasure']},
+    {name:'Bridal Rose',       source:'V', meanings:['happy love','unity','celebration of marriage']},
+    // ── Spring flowers ──
+    {name:'Daffodil',          source:'B', meanings:['new beginnings','rebirth','hope','regard','unrequited love']},
+    {name:'Tulip (Red)',       source:'V', meanings:['perfect love','declaration of love','passion']},
+    {name:'Tulip (Yellow)',    source:'V', meanings:['hopeless love','cheerful thoughts','sunshine']},
+    {name:'Tulip (Purple)',    source:'V', meanings:['royalty','admiration','rebirth']},
+    {name:'Hyacinth',          source:'B', meanings:['sincerity','forgiveness','sorrow','constancy']},
+    {name:'Hyacinth (Blue)',   source:'V', meanings:['constancy','steadfastness','I am sorry']},
+    {name:'Hyacinth (White)',  source:'V', meanings:['loveliness','prayer','lovely you are']},
+    {name:'Snowdrop',          source:'F', meanings:['hope','consolation','purity','first sign of spring']},
+    {name:'Crocus',            source:'F', meanings:['cheerfulness','youthful gladness','abuse not','foresight']},
+    {name:'Bluebell',          source:'F', meanings:['humility','constancy','everlasting love','gratitude']},
+    {name:'Lily of the Valley',source:'V', meanings:['return of happiness','purity','humility','you have made my life complete']},
+    {name:'Primrose',          source:'F', meanings:['early youth','young love','I cannot live without you','eternal love']},
+    {name:'Anemone',           source:'F', meanings:['forsaken love','anticipation','fading hope','protection against evil']},
+    {name:'Fritillary',        source:'V', meanings:['persecution','a warning','pride']},
+    // ── Summer flowers ──
+    {name:'Peony',             source:'B', meanings:['compassion','healing','good fortune','shame','bashfulness']},
+    {name:'Iris',              source:'B', meanings:['hope','faith','wisdom','courage','promise','royalty']},
+    {name:'Lavender',          source:'B', meanings:['devotion','calmness','serenity','faithfulness','distrust']},
+    {name:'Sunflower',         source:'B', meanings:['adoration','loyalty','warmth','longevity','seeking the light']},
+    {name:'Dahlia',            source:'V', meanings:['elegance','inner strength','commitment','creativity','dignity']},
+    {name:'Hydrangea',         source:'V', meanings:['heartfelt emotions','gratitude for understanding','boastfulness','frigidity']},
+    {name:'Carnation (Red)',   source:'V', meanings:['deep love','admiration','my heart aches for you']},
+    {name:'Carnation (White)', source:'V', meanings:['pure love','good luck','sweet and lovely','innocence']},
+    {name:'Carnation (Pink)',  source:'V', meanings:["I'll never forget you",'gratitude','mother\'s love']},
+    {name:'Carnation (Yellow)',source:'V', meanings:['disdain','rejection','disappointment']},
+    {name:'Cornflower',        source:'F', meanings:['delicacy','hope','anticipation','single blessedness']},
+    {name:'Foxglove',          source:'F', meanings:['insincerity','a wish','youth','fairy magic']},
+    {name:'Hollyhock',         source:'V', meanings:['ambition','fruitfulness','fecundity']},
+    {name:'Larkspur',          source:'V', meanings:['lightness','levity','fickleness','an open heart']},
+    {name:'Delphinium',        source:'V', meanings:['boldness','big-heartedness','ardent attachment']},
+    {name:'Lupin',             source:'F', meanings:['imagination','admiration','inner strength','voraciousness']},
+    {name:'Lisianthus',        source:'V', meanings:['appreciation','gratitude','charisma','lifetime bond']},
+    {name:'Gladiolus',         source:'V', meanings:['strength of character','moral integrity','infatuation','you pierce my heart']},
+    {name:'Sweet William',     source:'V', meanings:['gallantry','finesse','a smile','grant me one smile']},
+    {name:'Scabiosa',          source:'V', meanings:['unfortunate love','I have lost all','widowhood']},
+    {name:'Stock',             source:'V', meanings:['lasting beauty','bonds of affection','promptness']},
+    // ── Fragrant & garden ──
+    {name:'Gardenia',          source:'V', meanings:['secret love','purity','refinement','you are lovely','joy']},
+    {name:'Jasmine',           source:'B', meanings:['amiability','grace','elegance','sensuality','eternal love']},
+    {name:'Lilac (Purple)',    source:'V', meanings:['first emotions of love','youthful innocence','humility']},
+    {name:'Lilac (White)',     source:'V', meanings:['youthful innocence','purity of heart','modesty']},
+    {name:'Honeysuckle',       source:'F', meanings:['devoted affection','generous love','bonds of love','I will not answer hastily']},
+    {name:'Sweet Pea',         source:'V', meanings:['blissful pleasure','departure','farewell','thankfulness']},
+    {name:'Wisteria',          source:'F', meanings:['steadfast love','longevity','devotion','welcome']},
+    {name:'Orange Blossom',    source:'V', meanings:['purity','chastity','eternal love','marriage']},
+    {name:'Neroli',            source:'F', meanings:['purity','joy of marriage','innocence']},
+    {name:'Freesia',           source:'V', meanings:['innocence','thoughtfulness','friendship','trust']},
+    {name:'Tuberose',          source:'V', meanings:['dangerous pleasures','forbidden love','voluptuousness']},
+    {name:'Heliotrope',        source:'V', meanings:['devoted affection','I adore you','faithfulness','eternal love']},
+    // ── Wildflowers & herbs ──
+    {name:'Pansy',             source:'V', meanings:['loving thoughts','thinking of you','remembrance','tenderness']},
+    {name:'Violet',            source:'B', meanings:['modesty','faithfulness','quiet love','watchfulness']},
+    {name:'Forget-Me-Not',     source:'B', meanings:['true love','remembrance','lasting bonds','do not forget me']},
+    {name:'Daisy',             source:'F', meanings:['innocence','loyal love','cheerfulness','I will think about it']},
+    {name:'Chamomile',         source:'F', meanings:['patience in adversity','energy in adversity','humility']},
+    {name:'Clover (Four-Leaf)',source:'F', meanings:['good luck','be mine','I will be faithful to you']},
+    {name:'Clover (Red)',      source:'F', meanings:['industry','good luck','providence']},
+    {name:'Dandelion',         source:'F', meanings:['faithfulness','happiness','love\'s oracle','wishes']},
+    {name:'Thistle',           source:'F', meanings:['austerity','independence','retaliation','nobility']},
+    {name:'Yarrow',            source:'F', meanings:['healing','courage in love','war','everlasting love']},
+    {name:'Rosemary',          source:'F', meanings:['remembrance','fidelity','loyalty','wisdom','your presence revives me']},
+    {name:'Thyme',             source:'F', meanings:['courage','strength','activity','bravery']},
+    {name:'Sage',              source:'F', meanings:['wisdom','long life','esteem','domestic virtue']},
+    {name:'Mint',              source:'F', meanings:['virtue','warmth of feeling','cordiality']},
+    {name:'Rue',               source:'F', meanings:['disdain','bitterness','clear vision','repentance']},
+    {name:'Bay Laurel',        source:'F', meanings:['glory','reward of merit','victory','I change but in dying']},
+    // ── Exotic & special ──
+    {name:'Orchid',            source:'V', meanings:['refined beauty','rare love','luxury','long life','strength']},
+    {name:'Lotus',             source:'F', meanings:['enlightenment','rebirth','purity of heart','spiritual awakening']},
+    {name:'Magnolia',          source:'F', meanings:['dignity','nobility','perseverance','natural beauty','purity']},
+    {name:'Cherry Blossom',    source:'F', meanings:['beauty of life','transience','renewal','feminine beauty']},
+    {name:'Camellia (Red)',    source:'V', meanings:['you\'re a flame in my heart','passionate love','admiration']},
+    {name:'Camellia (White)',  source:'V', meanings:['perfection','loveliness','you\'re adorable']},
+    {name:'Camellia (Pink)',   source:'V', meanings:['longing','missing you','good luck']},
+    {name:'Hibiscus',          source:'F', meanings:['delicate beauty','fame','seize the opportunity','consumed by love']},
+    {name:'Protea',            source:'F', meanings:['courage','transformation','diversity','daring']},
+    {name:'Bird of Paradise',  source:'F', meanings:['joyfulness','paradise','magnificent beauty','freedom']},
+    {name:'Anthurium',         source:'F', meanings:['hospitality','happiness','abundance','lasting love']},
+    // ── Autumn & late season ──
+    {name:'Chrysanthemum (Red)',source:'B', meanings:['love','deep passion','I love you']},
+    {name:'Chrysanthemum (White)',source:'B',meanings:['truth','loyal love','honesty','grief']},
+    {name:'Chrysanthemum (Yellow)',source:'B',meanings:['slighted love','neglected love','sorrow']},
+    {name:'Aster',             source:'B', meanings:['patience','wisdom','daintiness','a talisman of love']},
+    {name:'Marigold',          source:'B', meanings:['grief','jealousy','cruelty','despair','sacred love']},
+    {name:'Zinnia',            source:'V', meanings:['thoughts of absent friends','lasting affection','constancy']},
+    {name:'Cosmos',            source:'V', meanings:['order','tranquility','modesty','joy in simple things']},
+    {name:'Heather (Purple)',  source:'F', meanings:['admiration','solitude','beauty']},
+    {name:'Heather (White)',   source:'F', meanings:['good luck','protection','wishes come true']},
+    {name:'Goldenrod',         source:'F', meanings:['encouragement','good fortune','treasure is near']},
+    // ── Trees & branches ──
+    {name:'Hawthorn Blossom',  source:'F', meanings:['hope','supreme happiness','fertility','protection']},
+    {name:'Elder Blossom',     source:'F', meanings:['compassion','zealousness','humility','sorrow']},
+    {name:'Acacia',            source:'V', meanings:['chaste love','friendship','secret love','immortality']},
+    {name:'Mimosa',            source:'V', meanings:['sensitivity','chasteness','secret love']},
+    {name:'Almond Blossom',    source:'F', meanings:['hope','new beginnings','indiscretion','heedlessness']},
+    // ── More Victorian classics ──
+    {name:'Ranunculus',        source:'V', meanings:['radiance','charm','I am dazzled by you','attractiveness']},
+    {name:"Baby's Breath",     source:'V', meanings:['everlasting love','innocence','purity','trust']},
+    {name:'Stephanotis',       source:'V', meanings:['happiness in marriage','good luck','desire to travel']},
+    {name:'Lemon Verbena',     source:'V', meanings:['enchantment','you have bewitched me','sensitivity']},
+    {name:'Wallflower',        source:'V', meanings:['fidelity in adversity','constancy','lasting beauty']},
+    {name:'Nigella',           source:'V', meanings:['perplexity','you perplex me','a puzzle','kiss me twice before I rise']},
+    {name:'Love-in-a-Mist',    source:'V', meanings:['perplexity','delicate feelings','entanglement in love']},
+    {name:'Canterbury Bell',   source:'V', meanings:['acknowledgement','constancy','faith']},
+    {name:'Columbine',         source:'F', meanings:['folly','ingratitude','deserted lover','resolution']},
+    {name:'Cyclamen',          source:'V', meanings:['resignation','diffidence','goodbye','I must leave thee']},
+    {name:'Eglantine',         source:'V', meanings:['poetry','genius','I wound to heal','a tender heart']},
+    {name:'Fuchsia',           source:'V', meanings:['humble love','confiding love','taste']},
+    {name:'Geranium (Red)',    source:'V', meanings:['comfort','stupidity','you are trifling with me']},
+    {name:'Geranium (Pink)',   source:'V', meanings:['preference','I prefer you','doubt']},
+    {name:'Globe Amaranth',    source:'V', meanings:['immortality','unfading love','unchangeable']},
+    {name:'Lychnis',           source:'V', meanings:['wit','religious enthusiasm','sunbeaming eyes']},
+    {name:'Myrtle',            source:'B', meanings:['love','mirth','marriage','Hebrew emblem of marriage']},
+    {name:'Passionflower',     source:'F', meanings:['faith','religious superstition','susceptibility','piety']},
+    {name:'Periwinkle',        source:'F', meanings:['tender recollections','early friendship','pleasures of memory']},
+    {name:'Poppy (Red)',       source:'B', meanings:['consolation','sleep','imagination','extravagance']},
+    {name:'Poppy (White)',     source:'F', meanings:['sleep','eternal slumber','I sleep, I forget','oblivion']},
+    {name:'Snapdragon',        source:'V', meanings:['presumption','no','deception','gracious lady']},
+    {name:'Speedwell',         source:'V', meanings:['female fidelity','facility']},
+    {name:'Verbena',           source:'F', meanings:['pray for me','sensibility','pure love','I weep for thee']},
+    {name:'Water Lily',        source:'F', meanings:['purity of heart','eloquence','persuasion','peace']},
+    {name:'Weigela',           source:'V', meanings:['accept a faithful heart']},
+  ];
+
+  let allFlowers = [...FLOWERS];
+
+  function renderGlossary(flowers) {
+    document.getElementById('glossary').innerHTML = flowers.map(f => {
+      const label = f.source === 'V' ? 'Victorian' : f.source === 'F' ? 'Folklore' : 'Both';
+      const cls   = f.source === 'V' ? 'src-v' : f.source === 'F' ? 'src-f' : 'src-b';
+      return `<div class="g-item">
+        <div class="g-name-row"><span class="g-name">${f.name}</span><span class="g-src ${cls}">${label}</span></div>
+        <div class="g-meaning">${f.meanings.slice(0,2).join(', ')}</div>
+      </div>`;
+    }).join('');
+  }
+
+  function filterGlossary(q) {
+    const lq = q.toLowerCase();
+    const filtered = FLOWERS.filter(f =>
+      f.name.toLowerCase().includes(lq) ||
+      f.meanings.some(m => m.toLowerCase().includes(lq))
+    );
+    renderGlossary(filtered);
+  }
+
+  function fill(text) {
+    document.getElementById('msg').value = text;
+    document.getElementById('msg').focus();
+  }
+
+  async function compose() {
+    const msg = document.getElementById('msg').value.trim();
+    if (!msg) { document.getElementById('msg').focus(); return; }
+    const btn = document.getElementById('compose-btn');
+    const results = document.getElementById('results');
+    btn.disabled = true;
+    results.innerHTML = `<div class="loading">Consulting the floral dictionary<span class="loading-dots"><span>.</span><span>.</span><span>.</span></span></div>`;
+
+    const system = `You are a Victorian floriography expert. Given a message or sentiment, recommend exactly 3 distinct floral arrangements. Each should feel poetic and authentic to the Victorian tradition.
+
+Respond ONLY with valid JSON — no markdown, no backticks, no preamble. Use this exact structure:
+{
+  "arrangements": [
+    {
+      "name": "Poetic arrangement name",
+      "tagline": "Evocative tagline under 8 words",
+      "flowers": [
+        { "name": "Flower name", "meaning": "Why this flower fits this specific sentiment, 1 sentence" }
+      ],
+      "note": "Two sentences on how to present or carry the arrangement."
+    }
+  ]
+}
+
+Each arrangement should have 3–5 flowers. The first arrangement should be the most fitting.`;
+
+    try {
+      const resp = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': ANTHROPIC_API_KEY,
+          'anthropic-version': '2023-06-01',
+          'anthropic-dangerous-direct-browser-access': 'true'
+        },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-20250514',
+          max_tokens: 1200,
+          system,
+          messages: [{ role: 'user', content: msg }]
+        })
+      });
+
+      if (!resp.ok) {
+        const err = await resp.json().catch(() => ({}));
+        throw new Error(err.error?.message || `HTTP ${resp.status}`);
+      }
+
+      const data = await resp.json();
+      const raw = data.content.map(c => c.text || '').join('');
+      const clean = raw.replace(/```json|```/g, '').trim();
+      const parsed = JSON.parse(clean);
+      renderArrangements(parsed.arrangements);
+    } catch (e) {
+      results.innerHTML = `<div class="error">Something wilted — ${e.message}.<br>Check your API key in the script and try again.</div>`;
+    }
+
+    btn.disabled = false;
+  }
+
+  function renderArrangements(arr) {
+    if (!arr?.length) {
+      document.getElementById('results').innerHTML = `<div class="error">No arrangements returned. Please try again.</div>`;
+      return;
+    }
+    document.getElementById('results').innerHTML = `
+      <p class="results-heading">Three arrangements for your sentiment</p>
+      ${arr.map((a, i) => `
+        <article class="arrangement" style="animation-delay:${i * 0.12}s">
+          <div class="arr-header">
+            <div>
+              <div class="arr-name">${escHtml(a.name)}</div>
+              <div class="arr-tagline">${escHtml(a.tagline)}</div>
+            </div>
+            ${i === 0 ? '<span class="best-badge">Best match</span>' : ''}
+          </div>
+          <div class="arr-body">
+            <p class="section-micro">Flowers &amp; their meanings</p>
+            <div class="flowers-grid">
+              ${a.flowers.map(f => `
+                <div class="flower-pill">
+                  <div class="flower-pill-name">${escHtml(f.name)}</div>
+                  <div class="flower-pill-meaning">${escHtml(f.meaning)}</div>
+                </div>`).join('')}
+            </div>
+            <p class="arr-note">${escHtml(a.note)}</p>
+          </div>
+        </article>
+      `).join('')}`;
+  }
+
+  function escHtml(str) {
+    return String(str)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  // Enter to submit
+  document.addEventListener('DOMContentLoaded', () => {
+    renderGlossary(FLOWERS);
+    document.getElementById('msg').addEventListener('keydown', e => {
+      if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) compose();
+    });
+  });
+</script>
+</body>
+</html>
