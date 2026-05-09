@@ -22,9 +22,24 @@
       --blush: #d4896a;
       --blush-light: #f0c4b0;
       --sage: #7a9e8a;
-      --sage-light: #c4d8cc;
       --border: rgba(42,31,20,0.12);
       --border-light: rgba(42,31,20,0.07);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --cream: #1a1410;
+        --warm-white: #211a13;
+        --parchment: #2a2018;
+        --ink: #e8ddd0;
+        --ink-light: #c4b09a;
+        --ink-muted: #9a8a78;
+        --ink-faint: #6a5a4a;
+        --blush: #d4896a;
+        --blush-light: #6a3a28;
+        --border: rgba(232,221,208,0.12);
+        --border-light: rgba(232,221,208,0.07);
+      }
     }
 
     html { scroll-behavior: smooth; }
@@ -38,7 +53,6 @@
       overflow-x: hidden;
     }
 
-    /* ── Grain overlay ── */
     body::before {
       content: '';
       position: fixed;
@@ -49,15 +63,10 @@
       opacity: 0.6;
     }
 
-    /* ── Layout ── */
     .page { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; padding: 0 2rem 5rem; }
 
     /* ── Hero ── */
-    .hero {
-      text-align: center;
-      padding: 5rem 0 3rem;
-      position: relative;
-    }
+    .hero { text-align: center; padding: 5rem 0 3rem; }
 
     .hero::before {
       content: '❧';
@@ -106,10 +115,7 @@
       background: linear-gradient(to right, transparent, var(--ink-faint), transparent);
     }
 
-    .ornament-glyph {
-      font-size: 0.9rem;
-      color: var(--ink-faint);
-    }
+    .ornament-glyph { font-size: 0.9rem; color: var(--ink-faint); }
 
     .hero p {
       font-size: 1rem;
@@ -171,12 +177,7 @@
       display: block;
     }
 
-    .suggestions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 1.4rem;
-    }
+    .suggestions { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1.4rem; }
 
     .suggestion-btn {
       font-size: 12px;
@@ -192,11 +193,7 @@
       letter-spacing: 0.02em;
     }
 
-    .suggestion-btn:hover {
-      background: var(--parchment);
-      border-color: var(--ink-faint);
-      color: var(--ink);
-    }
+    .suggestion-btn:hover { background: var(--parchment); border-color: var(--ink-faint); color: var(--ink); }
 
     .compose-btn {
       width: 100%;
@@ -240,10 +237,7 @@
       font-size: 1.1rem;
     }
 
-    .loading-dots span {
-      animation: blink 1.4s infinite;
-      opacity: 0;
-    }
+    .loading-dots span { animation: blink 1.4s infinite; opacity: 0; }
     .loading-dots span:nth-child(2) { animation-delay: 0.46s; }
     .loading-dots span:nth-child(3) { animation-delay: 0.92s; }
 
@@ -276,6 +270,7 @@
       font-style: italic;
       font-weight: 400;
       line-height: 1.2;
+      color: var(--ink);
     }
 
     .arr-tagline {
@@ -291,7 +286,7 @@
       font-size: 10px;
       padding: 3px 10px;
       border-radius: 99px;
-      background: #f0ebe0;
+      background: var(--parchment);
       color: var(--blush);
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -323,12 +318,7 @@
       padding: 0.65rem 0.9rem;
     }
 
-    .flower-pill-name {
-      font-size: 13px;
-      font-weight: 400;
-      color: var(--ink);
-      margin-bottom: 2px;
-    }
+    .flower-pill-name { font-size: 13px; font-weight: 400; color: var(--ink); margin-bottom: 2px; }
 
     .flower-pill-meaning {
       font-size: 11.5px;
@@ -347,7 +337,7 @@
       padding-top: 1rem;
     }
 
-    .error { text-align: center; padding: 2rem; color: #a0533a; font-size: 14px; }
+    .error-msg { text-align: center; padding: 2rem; color: #a0533a; font-size: 14px; }
 
     /* ── Glossary ── */
     .glossary {
@@ -356,12 +346,7 @@
       animation: fadeUp 0.9s ease both 0.6s;
     }
 
-    .glossary-header {
-      display: flex;
-      align-items: baseline;
-      gap: 1rem;
-      margin-bottom: 1.4rem;
-    }
+    .glossary-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.4rem; }
 
     .glossary-title {
       font-family: 'Playfair Display', serif;
@@ -371,12 +356,25 @@
       color: var(--ink);
     }
 
-    .glossary-sub {
+    .glossary-sub { font-size: 11px; color: var(--ink-faint); letter-spacing: 0.12em; text-transform: uppercase; }
+
+    .gf-row { display: flex; gap: 6px; margin-bottom: 0.9rem; flex-wrap: wrap; }
+
+    .gf-btn {
       font-size: 11px;
-      color: var(--ink-faint);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 99px;
+      border: 0.5px solid var(--border);
+      background: transparent;
+      color: var(--ink-muted);
+      cursor: pointer;
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      transition: all 0.15s;
+      letter-spacing: 0.04em;
     }
+
+    .gf-btn.active, .gf-btn:hover { background: var(--parchment); border-color: var(--ink-faint); color: var(--ink); }
 
     .glossary-search {
       width: 100%;
@@ -392,14 +390,11 @@
       margin-bottom: 1rem;
       transition: border-color 0.2s;
     }
+
     .glossary-search:focus { border-color: var(--blush); }
     .glossary-search::placeholder { color: var(--ink-faint); }
 
-    .glossary-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
-      gap: 6px;
-    }
+    .glossary-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); gap: 6px; }
 
     .g-item {
       padding: 0.55rem 0.8rem;
@@ -411,13 +406,10 @@
 
     .g-item:hover { border-color: var(--ink-faint); }
 
+    .g-name-row { display: flex; align-items: center; justify-content: space-between; gap: 4px; }
     .g-name { font-size: 13px; font-weight: 400; color: var(--ink); }
-    .g-meaning {
-      font-size: 11.5px;
-      color: var(--ink-muted);
-      font-style: italic;
-      font-family: 'Cormorant Garamond', serif;
-    }
+    .g-src { font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); flex-shrink: 0; }
+    .g-meaning { font-size: 11.5px; color: var(--ink-muted); font-style: italic; font-family: 'Cormorant Garamond', serif; }
 
     /* ── Footer ── */
     footer {
@@ -427,7 +419,6 @@
       color: var(--ink-faint);
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      animation: fadeIn 1s ease both 0.8s;
     }
 
     footer span { color: var(--blush); }
@@ -493,9 +484,9 @@
   <section class="glossary">
     <div class="glossary-header">
       <h2 class="glossary-title">A Floral Dictionary</h2>
-      <span class="glossary-sub">110 flowers</span>
+      <span class="glossary-sub" id="glossary-count">110 flowers</span>
     </div>
-    <div class="glossary-filters">
+    <div class="gf-row">
       <button class="gf-btn active" onclick="setFilter('all',this)">All</button>
       <button class="gf-btn" onclick="setFilter('V',this)">Victorian</button>
       <button class="gf-btn" onclick="setFilter('F',this)">Folklore</button>
@@ -511,167 +502,158 @@
 </div>
 
 <script>
-  const ANTHROPIC_API_KEY = 'YOUR_API_KEY_HERE'; // Replace with your key or use a backend proxy
-
-  // source: V = Victorian floriography, F = folklore & mythology, B = both
   const FLOWERS = [
-    // ── Roses ──
-    {name:'Red Rose',          source:'V', meanings:['passionate love','desire','romance','I love you']},
-    {name:'White Rose',        source:'V', meanings:['purity','innocence','sympathy','new beginnings','reverence']},
-    {name:'Pink Rose',         source:'V', meanings:['admiration','gratitude','gentle affection','appreciation']},
-    {name:'Yellow Rose',       source:'V', meanings:['friendship','joy','warmth','platonic love']},
-    {name:'Orange Rose',       source:'V', meanings:['enthusiasm','desire','fascination','passionate romance']},
-    {name:'Coral Rose',        source:'V', meanings:['desire','modesty','friendship blossoming into love']},
-    {name:'Lavender Rose',     source:'V', meanings:['enchantment','love at first sight','mystery','wonder']},
-    {name:'Dark Crimson Rose', source:'V', meanings:['mourning','deep grief','unconscious beauty']},
-    {name:'Moss Rose',         source:'V', meanings:['confessions of love','voluptuous love','pleasure']},
-    {name:'Bridal Rose',       source:'V', meanings:['happy love','unity','celebration of marriage']},
-    // ── Spring flowers ──
-    {name:'Daffodil',          source:'B', meanings:['new beginnings','rebirth','hope','regard','unrequited love']},
-    {name:'Tulip (Red)',       source:'V', meanings:['perfect love','declaration of love','passion']},
-    {name:'Tulip (Yellow)',    source:'V', meanings:['hopeless love','cheerful thoughts','sunshine']},
-    {name:'Tulip (Purple)',    source:'V', meanings:['royalty','admiration','rebirth']},
-    {name:'Hyacinth',          source:'B', meanings:['sincerity','forgiveness','sorrow','constancy']},
-    {name:'Hyacinth (Blue)',   source:'V', meanings:['constancy','steadfastness','I am sorry']},
-    {name:'Hyacinth (White)',  source:'V', meanings:['loveliness','prayer','lovely you are']},
-    {name:'Snowdrop',          source:'F', meanings:['hope','consolation','purity','first sign of spring']},
-    {name:'Crocus',            source:'F', meanings:['cheerfulness','youthful gladness','abuse not','foresight']},
-    {name:'Bluebell',          source:'F', meanings:['humility','constancy','everlasting love','gratitude']},
-    {name:'Lily of the Valley',source:'V', meanings:['return of happiness','purity','humility','you have made my life complete']},
-    {name:'Primrose',          source:'F', meanings:['early youth','young love','I cannot live without you','eternal love']},
-    {name:'Anemone',           source:'F', meanings:['forsaken love','anticipation','fading hope','protection against evil']},
-    {name:'Fritillary',        source:'V', meanings:['persecution','a warning','pride']},
-    // ── Summer flowers ──
-    {name:'Peony',             source:'B', meanings:['compassion','healing','good fortune','shame','bashfulness']},
-    {name:'Iris',              source:'B', meanings:['hope','faith','wisdom','courage','promise','royalty']},
-    {name:'Lavender',          source:'B', meanings:['devotion','calmness','serenity','faithfulness','distrust']},
-    {name:'Sunflower',         source:'B', meanings:['adoration','loyalty','warmth','longevity','seeking the light']},
-    {name:'Dahlia',            source:'V', meanings:['elegance','inner strength','commitment','creativity','dignity']},
-    {name:'Hydrangea',         source:'V', meanings:['heartfelt emotions','gratitude for understanding','boastfulness','frigidity']},
-    {name:'Carnation (Red)',   source:'V', meanings:['deep love','admiration','my heart aches for you']},
-    {name:'Carnation (White)', source:'V', meanings:['pure love','good luck','sweet and lovely','innocence']},
-    {name:'Carnation (Pink)',  source:'V', meanings:["I'll never forget you",'gratitude','mother\'s love']},
-    {name:'Carnation (Yellow)',source:'V', meanings:['disdain','rejection','disappointment']},
-    {name:'Cornflower',        source:'F', meanings:['delicacy','hope','anticipation','single blessedness']},
-    {name:'Foxglove',          source:'F', meanings:['insincerity','a wish','youth','fairy magic']},
-    {name:'Hollyhock',         source:'V', meanings:['ambition','fruitfulness','fecundity']},
-    {name:'Larkspur',          source:'V', meanings:['lightness','levity','fickleness','an open heart']},
-    {name:'Delphinium',        source:'V', meanings:['boldness','big-heartedness','ardent attachment']},
-    {name:'Lupin',             source:'F', meanings:['imagination','admiration','inner strength','voraciousness']},
-    {name:'Lisianthus',        source:'V', meanings:['appreciation','gratitude','charisma','lifetime bond']},
-    {name:'Gladiolus',         source:'V', meanings:['strength of character','moral integrity','infatuation','you pierce my heart']},
-    {name:'Sweet William',     source:'V', meanings:['gallantry','finesse','a smile','grant me one smile']},
-    {name:'Scabiosa',          source:'V', meanings:['unfortunate love','I have lost all','widowhood']},
-    {name:'Stock',             source:'V', meanings:['lasting beauty','bonds of affection','promptness']},
-    // ── Fragrant & garden ──
-    {name:'Gardenia',          source:'V', meanings:['secret love','purity','refinement','you are lovely','joy']},
-    {name:'Jasmine',           source:'B', meanings:['amiability','grace','elegance','sensuality','eternal love']},
-    {name:'Lilac (Purple)',    source:'V', meanings:['first emotions of love','youthful innocence','humility']},
-    {name:'Lilac (White)',     source:'V', meanings:['youthful innocence','purity of heart','modesty']},
-    {name:'Honeysuckle',       source:'F', meanings:['devoted affection','generous love','bonds of love','I will not answer hastily']},
-    {name:'Sweet Pea',         source:'V', meanings:['blissful pleasure','departure','farewell','thankfulness']},
-    {name:'Wisteria',          source:'F', meanings:['steadfast love','longevity','devotion','welcome']},
-    {name:'Orange Blossom',    source:'V', meanings:['purity','chastity','eternal love','marriage']},
-    {name:'Neroli',            source:'F', meanings:['purity','joy of marriage','innocence']},
-    {name:'Freesia',           source:'V', meanings:['innocence','thoughtfulness','friendship','trust']},
-    {name:'Tuberose',          source:'V', meanings:['dangerous pleasures','forbidden love','voluptuousness']},
-    {name:'Heliotrope',        source:'V', meanings:['devoted affection','I adore you','faithfulness','eternal love']},
-    // ── Wildflowers & herbs ──
-    {name:'Pansy',             source:'V', meanings:['loving thoughts','thinking of you','remembrance','tenderness']},
-    {name:'Violet',            source:'B', meanings:['modesty','faithfulness','quiet love','watchfulness']},
-    {name:'Forget-Me-Not',     source:'B', meanings:['true love','remembrance','lasting bonds','do not forget me']},
-    {name:'Daisy',             source:'F', meanings:['innocence','loyal love','cheerfulness','I will think about it']},
-    {name:'Chamomile',         source:'F', meanings:['patience in adversity','energy in adversity','humility']},
-    {name:'Clover (Four-Leaf)',source:'F', meanings:['good luck','be mine','I will be faithful to you']},
-    {name:'Clover (Red)',      source:'F', meanings:['industry','good luck','providence']},
-    {name:'Dandelion',         source:'F', meanings:['faithfulness','happiness','love\'s oracle','wishes']},
-    {name:'Thistle',           source:'F', meanings:['austerity','independence','retaliation','nobility']},
-    {name:'Yarrow',            source:'F', meanings:['healing','courage in love','war','everlasting love']},
-    {name:'Rosemary',          source:'F', meanings:['remembrance','fidelity','loyalty','wisdom','your presence revives me']},
-    {name:'Thyme',             source:'F', meanings:['courage','strength','activity','bravery']},
-    {name:'Sage',              source:'F', meanings:['wisdom','long life','esteem','domestic virtue']},
-    {name:'Mint',              source:'F', meanings:['virtue','warmth of feeling','cordiality']},
-    {name:'Rue',               source:'F', meanings:['disdain','bitterness','clear vision','repentance']},
-    {name:'Bay Laurel',        source:'F', meanings:['glory','reward of merit','victory','I change but in dying']},
-    // ── Exotic & special ──
-    {name:'Orchid',            source:'V', meanings:['refined beauty','rare love','luxury','long life','strength']},
-    {name:'Lotus',             source:'F', meanings:['enlightenment','rebirth','purity of heart','spiritual awakening']},
-    {name:'Magnolia',          source:'F', meanings:['dignity','nobility','perseverance','natural beauty','purity']},
-    {name:'Cherry Blossom',    source:'F', meanings:['beauty of life','transience','renewal','feminine beauty']},
-    {name:'Camellia (Red)',    source:'V', meanings:['you\'re a flame in my heart','passionate love','admiration']},
-    {name:'Camellia (White)',  source:'V', meanings:['perfection','loveliness','you\'re adorable']},
-    {name:'Camellia (Pink)',   source:'V', meanings:['longing','missing you','good luck']},
-    {name:'Hibiscus',          source:'F', meanings:['delicate beauty','fame','seize the opportunity','consumed by love']},
-    {name:'Protea',            source:'F', meanings:['courage','transformation','diversity','daring']},
-    {name:'Bird of Paradise',  source:'F', meanings:['joyfulness','paradise','magnificent beauty','freedom']},
-    {name:'Anthurium',         source:'F', meanings:['hospitality','happiness','abundance','lasting love']},
-    // ── Autumn & late season ──
-    {name:'Chrysanthemum (Red)',source:'B', meanings:['love','deep passion','I love you']},
-    {name:'Chrysanthemum (White)',source:'B',meanings:['truth','loyal love','honesty','grief']},
+    {name:'Red Rose',source:'V',meanings:['passionate love','desire','romance','I love you']},
+    {name:'White Rose',source:'V',meanings:['purity','innocence','sympathy','new beginnings','reverence']},
+    {name:'Pink Rose',source:'V',meanings:['admiration','gratitude','gentle affection','appreciation']},
+    {name:'Yellow Rose',source:'V',meanings:['friendship','joy','warmth','platonic love']},
+    {name:'Orange Rose',source:'V',meanings:['enthusiasm','desire','fascination']},
+    {name:'Coral Rose',source:'V',meanings:['desire','modesty','friendship blossoming into love']},
+    {name:'Lavender Rose',source:'V',meanings:['enchantment','love at first sight','mystery']},
+    {name:'Dark Crimson Rose',source:'V',meanings:['mourning','deep grief','unconscious beauty']},
+    {name:'Moss Rose',source:'V',meanings:['confessions of love','voluptuous love','pleasure']},
+    {name:'Bridal Rose',source:'V',meanings:['happy love','unity','celebration of marriage']},
+    {name:'Daffodil',source:'B',meanings:['new beginnings','rebirth','hope','unrequited love']},
+    {name:'Tulip (Red)',source:'V',meanings:['perfect love','declaration of love','passion']},
+    {name:'Tulip (Yellow)',source:'V',meanings:['hopeless love','cheerful thoughts','sunshine']},
+    {name:'Tulip (Purple)',source:'V',meanings:['royalty','admiration','rebirth']},
+    {name:'Hyacinth',source:'B',meanings:['sincerity','forgiveness','sorrow','constancy']},
+    {name:'Hyacinth (Blue)',source:'V',meanings:['constancy','steadfastness','I am sorry']},
+    {name:'Hyacinth (White)',source:'V',meanings:['loveliness','prayer','lovely you are']},
+    {name:'Snowdrop',source:'F',meanings:['hope','consolation','purity','first sign of spring']},
+    {name:'Crocus',source:'F',meanings:['cheerfulness','youthful gladness','foresight']},
+    {name:'Bluebell',source:'F',meanings:['humility','constancy','everlasting love','gratitude']},
+    {name:'Lily of the Valley',source:'V',meanings:['return of happiness','purity','humility']},
+    {name:'Primrose',source:'F',meanings:['early youth','young love','I cannot live without you']},
+    {name:'Anemone',source:'F',meanings:['forsaken love','anticipation','fading hope']},
+    {name:'Fritillary',source:'V',meanings:['persecution','a warning','pride']},
+    {name:'Peony',source:'B',meanings:['compassion','healing','good fortune','bashfulness']},
+    {name:'Iris',source:'B',meanings:['hope','faith','wisdom','courage','promise']},
+    {name:'Lavender',source:'B',meanings:['devotion','calmness','serenity','faithfulness']},
+    {name:'Sunflower',source:'B',meanings:['adoration','loyalty','warmth','longevity']},
+    {name:'Dahlia',source:'V',meanings:['elegance','inner strength','commitment','dignity']},
+    {name:'Hydrangea',source:'V',meanings:['heartfelt emotions','gratitude for understanding']},
+    {name:'Carnation (Red)',source:'V',meanings:['deep love','admiration','my heart aches for you']},
+    {name:'Carnation (White)',source:'V',meanings:['pure love','good luck','innocence']},
+    {name:'Carnation (Pink)',source:'V',meanings:["I'll never forget you",'gratitude']},
+    {name:'Carnation (Yellow)',source:'V',meanings:['disdain','rejection','disappointment']},
+    {name:'Cornflower',source:'F',meanings:['delicacy','hope','anticipation']},
+    {name:'Foxglove',source:'F',meanings:['insincerity','a wish','youth','fairy magic']},
+    {name:'Hollyhock',source:'V',meanings:['ambition','fruitfulness']},
+    {name:'Larkspur',source:'V',meanings:['lightness','levity','an open heart']},
+    {name:'Delphinium',source:'V',meanings:['boldness','big-heartedness','ardent attachment']},
+    {name:'Lupin',source:'F',meanings:['imagination','admiration','inner strength']},
+    {name:'Lisianthus',source:'V',meanings:['appreciation','gratitude','lifetime bond']},
+    {name:'Gladiolus',source:'V',meanings:['strength of character','moral integrity','you pierce my heart']},
+    {name:'Sweet William',source:'V',meanings:['gallantry','finesse','a smile']},
+    {name:'Scabiosa',source:'V',meanings:['unfortunate love','I have lost all','widowhood']},
+    {name:'Stock',source:'V',meanings:['lasting beauty','bonds of affection']},
+    {name:'Gardenia',source:'V',meanings:['secret love','purity','refinement','you are lovely']},
+    {name:'Jasmine',source:'B',meanings:['amiability','grace','elegance','eternal love']},
+    {name:'Lilac (Purple)',source:'V',meanings:['first emotions of love','youthful innocence']},
+    {name:'Lilac (White)',source:'V',meanings:['youthful innocence','purity of heart','modesty']},
+    {name:'Honeysuckle',source:'F',meanings:['devoted affection','generous love','bonds of love']},
+    {name:'Sweet Pea',source:'V',meanings:['blissful pleasure','departure','farewell','thankfulness']},
+    {name:'Wisteria',source:'F',meanings:['steadfast love','longevity','devotion']},
+    {name:'Orange Blossom',source:'V',meanings:['purity','chastity','eternal love','marriage']},
+    {name:'Freesia',source:'V',meanings:['innocence','thoughtfulness','friendship','trust']},
+    {name:'Tuberose',source:'V',meanings:['dangerous pleasures','forbidden love']},
+    {name:'Heliotrope',source:'V',meanings:['devoted affection','I adore you','eternal love']},
+    {name:'Pansy',source:'V',meanings:['loving thoughts','thinking of you','remembrance']},
+    {name:'Violet',source:'B',meanings:['modesty','faithfulness','quiet love']},
+    {name:'Forget-Me-Not',source:'B',meanings:['true love','remembrance','do not forget me']},
+    {name:'Daisy',source:'F',meanings:['innocence','loyal love','cheerfulness']},
+    {name:'Chamomile',source:'F',meanings:['patience in adversity','humility']},
+    {name:'Clover (Four-Leaf)',source:'F',meanings:['good luck','be mine','I will be faithful to you']},
+    {name:'Clover (Red)',source:'F',meanings:['industry','good luck','providence']},
+    {name:'Dandelion',source:'F',meanings:['faithfulness','happiness','wishes']},
+    {name:'Thistle',source:'F',meanings:['austerity','independence','nobility']},
+    {name:'Yarrow',source:'F',meanings:['healing','courage in love','everlasting love']},
+    {name:'Rosemary',source:'F',meanings:['remembrance','fidelity','loyalty','wisdom']},
+    {name:'Thyme',source:'F',meanings:['courage','strength','bravery']},
+    {name:'Sage',source:'F',meanings:['wisdom','long life','esteem']},
+    {name:'Mint',source:'F',meanings:['virtue','warmth of feeling','cordiality']},
+    {name:'Rue',source:'F',meanings:['disdain','bitterness','repentance']},
+    {name:'Bay Laurel',source:'F',meanings:['glory','reward of merit','victory']},
+    {name:'Orchid',source:'V',meanings:['refined beauty','rare love','luxury','strength']},
+    {name:'Lotus',source:'F',meanings:['enlightenment','rebirth','purity of heart']},
+    {name:'Magnolia',source:'F',meanings:['dignity','nobility','perseverance','natural beauty']},
+    {name:'Cherry Blossom',source:'F',meanings:['beauty of life','transience','renewal']},
+    {name:'Camellia (Red)',source:'V',meanings:['passionate love','admiration']},
+    {name:'Camellia (White)',source:'V',meanings:['perfection','loveliness']},
+    {name:'Camellia (Pink)',source:'V',meanings:['longing','missing you','good luck']},
+    {name:'Hibiscus',source:'F',meanings:['delicate beauty','fame','consumed by love']},
+    {name:'Protea',source:'F',meanings:['courage','transformation','daring']},
+    {name:'Bird of Paradise',source:'F',meanings:['joyfulness','paradise','freedom']},
+    {name:'Anthurium',source:'F',meanings:['hospitality','happiness','lasting love']},
+    {name:'Chrysanthemum (Red)',source:'B',meanings:['love','deep passion']},
+    {name:'Chrysanthemum (White)',source:'B',meanings:['truth','loyal love','grief']},
     {name:'Chrysanthemum (Yellow)',source:'B',meanings:['slighted love','neglected love','sorrow']},
-    {name:'Aster',             source:'B', meanings:['patience','wisdom','daintiness','a talisman of love']},
-    {name:'Marigold',          source:'B', meanings:['grief','jealousy','cruelty','despair','sacred love']},
-    {name:'Zinnia',            source:'V', meanings:['thoughts of absent friends','lasting affection','constancy']},
-    {name:'Cosmos',            source:'V', meanings:['order','tranquility','modesty','joy in simple things']},
-    {name:'Heather (Purple)',  source:'F', meanings:['admiration','solitude','beauty']},
-    {name:'Heather (White)',   source:'F', meanings:['good luck','protection','wishes come true']},
-    {name:'Goldenrod',         source:'F', meanings:['encouragement','good fortune','treasure is near']},
-    // ── Trees & branches ──
-    {name:'Hawthorn Blossom',  source:'F', meanings:['hope','supreme happiness','fertility','protection']},
-    {name:'Elder Blossom',     source:'F', meanings:['compassion','zealousness','humility','sorrow']},
-    {name:'Acacia',            source:'V', meanings:['chaste love','friendship','secret love','immortality']},
-    {name:'Mimosa',            source:'V', meanings:['sensitivity','chasteness','secret love']},
-    {name:'Almond Blossom',    source:'F', meanings:['hope','new beginnings','indiscretion','heedlessness']},
-    // ── More Victorian classics ──
-    {name:'Ranunculus',        source:'V', meanings:['radiance','charm','I am dazzled by you','attractiveness']},
-    {name:"Baby's Breath",     source:'V', meanings:['everlasting love','innocence','purity','trust']},
-    {name:'Stephanotis',       source:'V', meanings:['happiness in marriage','good luck','desire to travel']},
-    {name:'Lemon Verbena',     source:'V', meanings:['enchantment','you have bewitched me','sensitivity']},
-    {name:'Wallflower',        source:'V', meanings:['fidelity in adversity','constancy','lasting beauty']},
-    {name:'Nigella',           source:'V', meanings:['perplexity','you perplex me','a puzzle','kiss me twice before I rise']},
-    {name:'Love-in-a-Mist',    source:'V', meanings:['perplexity','delicate feelings','entanglement in love']},
-    {name:'Canterbury Bell',   source:'V', meanings:['acknowledgement','constancy','faith']},
-    {name:'Columbine',         source:'F', meanings:['folly','ingratitude','deserted lover','resolution']},
-    {name:'Cyclamen',          source:'V', meanings:['resignation','diffidence','goodbye','I must leave thee']},
-    {name:'Eglantine',         source:'V', meanings:['poetry','genius','I wound to heal','a tender heart']},
-    {name:'Fuchsia',           source:'V', meanings:['humble love','confiding love','taste']},
-    {name:'Geranium (Red)',    source:'V', meanings:['comfort','stupidity','you are trifling with me']},
-    {name:'Geranium (Pink)',   source:'V', meanings:['preference','I prefer you','doubt']},
-    {name:'Globe Amaranth',    source:'V', meanings:['immortality','unfading love','unchangeable']},
-    {name:'Lychnis',           source:'V', meanings:['wit','religious enthusiasm','sunbeaming eyes']},
-    {name:'Myrtle',            source:'B', meanings:['love','mirth','marriage','Hebrew emblem of marriage']},
-    {name:'Passionflower',     source:'F', meanings:['faith','religious superstition','susceptibility','piety']},
-    {name:'Periwinkle',        source:'F', meanings:['tender recollections','early friendship','pleasures of memory']},
-    {name:'Poppy (Red)',       source:'B', meanings:['consolation','sleep','imagination','extravagance']},
-    {name:'Poppy (White)',     source:'F', meanings:['sleep','eternal slumber','I sleep, I forget','oblivion']},
-    {name:'Snapdragon',        source:'V', meanings:['presumption','no','deception','gracious lady']},
-    {name:'Speedwell',         source:'V', meanings:['female fidelity','facility']},
-    {name:'Verbena',           source:'F', meanings:['pray for me','sensibility','pure love','I weep for thee']},
-    {name:'Water Lily',        source:'F', meanings:['purity of heart','eloquence','persuasion','peace']},
-    {name:'Weigela',           source:'V', meanings:['accept a faithful heart']},
+    {name:'Aster',source:'B',meanings:['patience','wisdom','a talisman of love']},
+    {name:'Marigold',source:'B',meanings:['grief','jealousy','sacred love']},
+    {name:'Zinnia',source:'V',meanings:['thoughts of absent friends','lasting affection']},
+    {name:'Cosmos',source:'V',meanings:['order','tranquility','joy in simple things']},
+    {name:'Heather (Purple)',source:'F',meanings:['admiration','solitude','beauty']},
+    {name:'Heather (White)',source:'F',meanings:['good luck','protection','wishes come true']},
+    {name:'Goldenrod',source:'F',meanings:['encouragement','good fortune']},
+    {name:'Hawthorn Blossom',source:'F',meanings:['hope','supreme happiness','protection']},
+    {name:'Elder Blossom',source:'F',meanings:['compassion','zealousness','humility']},
+    {name:'Acacia',source:'V',meanings:['chaste love','friendship','secret love']},
+    {name:'Mimosa',source:'V',meanings:['sensitivity','chasteness','secret love']},
+    {name:'Almond Blossom',source:'F',meanings:['hope','new beginnings']},
+    {name:'Ranunculus',source:'V',meanings:['radiance','charm','I am dazzled by you']},
+    {name:"Baby's Breath",source:'V',meanings:['everlasting love','innocence','purity']},
+    {name:'Stephanotis',source:'V',meanings:['happiness in marriage','good luck']},
+    {name:'Lemon Verbena',source:'V',meanings:['enchantment','you have bewitched me']},
+    {name:'Wallflower',source:'V',meanings:['fidelity in adversity','constancy']},
+    {name:'Nigella',source:'V',meanings:['perplexity','you perplex me','a puzzle']},
+    {name:'Love-in-a-Mist',source:'V',meanings:['perplexity','delicate feelings','entanglement in love']},
+    {name:'Canterbury Bell',source:'V',meanings:['acknowledgement','constancy','faith']},
+    {name:'Columbine',source:'F',meanings:['folly','ingratitude','deserted lover']},
+    {name:'Cyclamen',source:'V',meanings:['resignation','diffidence','goodbye']},
+    {name:'Eglantine',source:'V',meanings:['poetry','genius','a tender heart']},
+    {name:'Fuchsia',source:'V',meanings:['humble love','confiding love','taste']},
+    {name:'Geranium (Red)',source:'V',meanings:['comfort','stupidity']},
+    {name:'Geranium (Pink)',source:'V',meanings:['preference','I prefer you','doubt']},
+    {name:'Globe Amaranth',source:'V',meanings:['immortality','unfading love']},
+    {name:'Myrtle',source:'B',meanings:['love','mirth','marriage']},
+    {name:'Passionflower',source:'F',meanings:['faith','susceptibility','piety']},
+    {name:'Periwinkle',source:'F',meanings:['tender recollections','early friendship']},
+    {name:'Poppy (Red)',source:'B',meanings:['consolation','sleep','imagination']},
+    {name:'Poppy (White)',source:'F',meanings:['sleep','eternal slumber','oblivion']},
+    {name:'Snapdragon',source:'V',meanings:['presumption','deception','gracious lady']},
+    {name:'Verbena',source:'F',meanings:['pray for me','sensibility','pure love']},
+    {name:'Water Lily',source:'F',meanings:['purity of heart','eloquence','peace']},
+    {name:'Weigela',source:'V',meanings:['accept a faithful heart']},
   ];
 
-  let allFlowers = [...FLOWERS];
+  let activeFilter = 'all';
 
-  function renderGlossary(flowers) {
-    document.getElementById('glossary').innerHTML = flowers.map(f => {
+  function renderGlossary() {
+    const q = (document.getElementById('g-search').value || '').toLowerCase();
+    const filtered = FLOWERS.filter(f => {
+      const srcMatch = activeFilter === 'all' || f.source === activeFilter || f.source === 'B';
+      const textMatch = !q || f.name.toLowerCase().includes(q) || f.meanings.some(m => m.toLowerCase().includes(q));
+      return srcMatch && textMatch;
+    });
+    document.getElementById('glossary-count').textContent = filtered.length + ' flowers';
+    document.getElementById('glossary').innerHTML = filtered.map(f => {
       const label = f.source === 'V' ? 'Victorian' : f.source === 'F' ? 'Folklore' : 'Both';
-      const cls   = f.source === 'V' ? 'src-v' : f.source === 'F' ? 'src-f' : 'src-b';
       return `<div class="g-item">
-        <div class="g-name-row"><span class="g-name">${f.name}</span><span class="g-src ${cls}">${label}</span></div>
+        <div class="g-name-row"><span class="g-name">${f.name}</span><span class="g-src">${label}</span></div>
         <div class="g-meaning">${f.meanings.slice(0,2).join(', ')}</div>
       </div>`;
     }).join('');
   }
 
-  function filterGlossary(q) {
-    const lq = q.toLowerCase();
-    const filtered = FLOWERS.filter(f =>
-      f.name.toLowerCase().includes(lq) ||
-      f.meanings.some(m => m.toLowerCase().includes(lq))
-    );
-    renderGlossary(filtered);
+  function setFilter(v, btn) {
+    activeFilter = v;
+    document.querySelectorAll('.gf-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderGlossary();
   }
+
+  function filterGlossary() { renderGlossary(); }
 
   function fill(text) {
     document.getElementById('msg').value = text;
@@ -689,18 +671,7 @@
     const system = `You are a Victorian floriography expert. Given a message or sentiment, recommend exactly 3 distinct floral arrangements. Each should feel poetic and authentic to the Victorian tradition.
 
 Respond ONLY with valid JSON — no markdown, no backticks, no preamble. Use this exact structure:
-{
-  "arrangements": [
-    {
-      "name": "Poetic arrangement name",
-      "tagline": "Evocative tagline under 8 words",
-      "flowers": [
-        { "name": "Flower name", "meaning": "Why this flower fits this specific sentiment, 1 sentence" }
-      ],
-      "note": "Two sentences on how to present or carry the arrangement."
-    }
-  ]
-}
+{"arrangements":[{"name":"Poetic arrangement name","tagline":"Evocative tagline under 8 words","flowers":[{"name":"Flower name","meaning":"Why this flower fits this specific sentiment, 1 sentence"}],"note":"Two sentences on how to present or carry the arrangement."}]}
 
 Each arrangement should have 3–5 flowers. The first arrangement should be the most fitting.`;
 
@@ -709,7 +680,6 @@ Each arrangement should have 3–5 flowers. The first arrangement should be the 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'x-api-key': ANTHROPIC_API_KEY,
           'anthropic-version': '2023-06-01',
           'anthropic-dangerous-direct-browser-access': 'true'
         },
@@ -732,7 +702,7 @@ Each arrangement should have 3–5 flowers. The first arrangement should be the 
       const parsed = JSON.parse(clean);
       renderArrangements(parsed.arrangements);
     } catch (e) {
-      results.innerHTML = `<div class="error">Something wilted — ${e.message}.<br>Check your API key in the script and try again.</div>`;
+      results.innerHTML = `<div class="error-msg">Something wilted — ${escHtml(e.message)}. Please try again.</div>`;
     }
 
     btn.disabled = false;
@@ -740,7 +710,7 @@ Each arrangement should have 3–5 flowers. The first arrangement should be the 
 
   function renderArrangements(arr) {
     if (!arr?.length) {
-      document.getElementById('results').innerHTML = `<div class="error">No arrangements returned. Please try again.</div>`;
+      document.getElementById('results').innerHTML = `<div class="error-msg">No arrangements returned. Please try again.</div>`;
       return;
     }
     document.getElementById('results').innerHTML = `
@@ -771,13 +741,12 @@ Each arrangement should have 3–5 flowers. The first arrangement should be the 
 
   function escHtml(str) {
     return String(str)
-      .replace(/&/g,'&amp;').replace(/</g,'&lt;')
-      .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
 
-  // Enter to submit
   document.addEventListener('DOMContentLoaded', () => {
-    renderGlossary(FLOWERS);
+    renderGlossary();
     document.getElementById('msg').addEventListener('keydown', e => {
       if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) compose();
     });
